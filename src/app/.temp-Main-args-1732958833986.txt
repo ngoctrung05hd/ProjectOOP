@@ -1,0 +1,17 @@
+--module-path
+"C:\\Users\\ADMIN\\eclipse-workspace\\javafx-sdk-23.0.1\\lib"
+--add-modules
+javafx.controls,javafx.fxml,JavaFX,JavaFX
+SDK,
+JRE
+System
+Library
+-Dfile.encoding=UTF-8
+-Dstdout.encoding=UTF-8
+-Dstderr.encoding=UTF-8
+-p
+"C:\\Users\\ADMIN\\.p2\\pool\\plugins\\org.eclipse.fx.ide.css.jfx8_3.8.0.202204150904.jar"
+-classpath
+"C:\\Users\\ADMIN\\eclipse-workspace\\testJavaFX\\bin;E:\\javaprj\\javafx-sdk-23.0.1\\lib\\javafx.base.jar;E:\\javaprj\\javafx-sdk-23.0.1\\lib\\javafx.controls.jar;E:\\javaprj\\javafx-sdk-23.0.1\\lib\\javafx.fxml.jar;E:\\javaprj\\javafx-sdk-23.0.1\\lib\\javafx.graphics.jar;E:\\javaprj\\javafx-sdk-23.0.1\\lib\\javafx.media.jar;E:\\javaprj\\javafx-sdk-23.0.1\\lib\\javafx.swing.jar;E:\\javaprj\\javafx-sdk-23.0.1\\lib\\javafx.web.jar;E:\\javaprj\\javafx-sdk-23.0.1\\lib\\javafx-swt.jar"
+-XX:+ShowCodeDetailsInExceptionMessages
+application.Main
