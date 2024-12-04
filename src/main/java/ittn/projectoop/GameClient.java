@@ -1,5 +1,5 @@
 package ittn.projectoop;
-2
+
 import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.scene.Scene;

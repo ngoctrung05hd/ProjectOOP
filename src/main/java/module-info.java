@@ -13,6 +13,9 @@ module ittn.projectoop {
     requires annotations;
 
     opens ittn.projectoop to javafx.fxml;
+    opens application to javafx.fxml;
+
     exports ittn.projectoop;
     exports AtDe;
+    exports application;
 }

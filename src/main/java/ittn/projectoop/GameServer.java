@@ -33,9 +33,9 @@ public class GameServer extends Application {
         Button confirmButton = new Button("Xác nhận");
         confirmButton.setOnAction(e -> {
             playerCount = playerCountComboBox.getValue();
-            if (playerCount != null) {
-                showPlayerNameInput(primaryStage);
-            }
+
+            showPlayerNameInput(primaryStage);
+
         });
 
         layout.getChildren().addAll(playerCountComboBox, confirmButton);
