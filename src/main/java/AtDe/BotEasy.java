@@ -20,7 +20,7 @@ public class BotEasy implements Member {
             attack(firstMove);
         }
         else {
-            defense();
+            defend();
         }
     }
 
@@ -37,9 +37,9 @@ public class BotEasy implements Member {
                     attackCards.add(hand.getCard(i));
                 }
 
-            for (int i = 0; i < attackCards.size(); ++i)
+            for (int i = 0; i < attackCards.size(); ++i) {
                 hand.remove(attackCards.getCard(i));
-
+            }
         }
         else {
             for (int i = 0; i < hand.size(); ++i){
@@ -52,17 +52,21 @@ public class BotEasy implements Member {
         Casino.attack(attackCards, getDeckId());
     }
 
-    public void defense() {
+    public void defend() {
         setSuccess(false);
         NeedToDefend needToDefend = Casino.getNeedToDefend(getDeckId());
         for (int i = 0; i < hand.size(); ++i) {
             for (int j = 0; j < needToDefend.size(); ++j) {
-                if (Card.checkDefend((Card) needToDefend.getCard(j), (Card) hand.getCard(i))) {
+                if (((Card)needToDefend.getCard(j)).checkDefend((Card) hand.getCard(i))) {
                     Casino.defend((Card) needToDefend.getCard(j), (Card) hand.getCard(i), getDeckId());
                     setSuccess(true);
                 }
             }
         }
+    }
+
+    public void clearHand() {
+        hand.removeAll();
     }
 
     public void setRole(String role) {
@@ -83,6 +87,10 @@ public class BotEasy implements Member {
 
     public void setDeckId(int deckId) {
         this.deckId = deckId;
+    }
+
+    public Hand getHand() {
+        return hand;
     }
 
     public int getDeckId() {

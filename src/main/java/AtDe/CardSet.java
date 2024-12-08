@@ -2,7 +2,7 @@ package AtDe;
 
 import java.util.Collections;
 
-public class CardSet extends Base.CardList {
+public class CardSet extends CardList {
 
     public CardSet() {
         super();
@@ -10,6 +10,11 @@ public class CardSet extends Base.CardList {
             for (int _suit = 0; _suit < Card.COUNT_SUITS; ++_suit)
                     add(new Card(_rank, _suit));
         shuffle();
+        int specialSuit = getCard(0).getSuit();
+        for (int i = 0; i < size(); i++) {
+            Card card = (Card) getCard(i);
+            card.setSpecialSuit(specialSuit);
+        }
     }
 
     public void shuffle() {

@@ -1,86 +1,68 @@
 package AtDe;
 
 import javafx.application.Application;
-import javafx.geometry.Pos;
 import javafx.scene.Scene;
-import javafx.scene.control.*;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
-import javafx.scene.layout.*;
+import javafx.scene.control.ToggleButton;
+import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class gameMenu extends Application {
-    // Số người chơi tối thiểu và tối đa
-    private static final int MIN_PLAYERS = 2;
-    private static final int MAX_PLAYERS = 4;
 
-    private boolean isGraphicMode = true; // Chế độ mặc định là đồ họa
-    private int selectedPlayers = MIN_PLAYERS; // Giá trị mặc định
-
-    public static void main(String[] args) {
-        launch(args);
-    }
+    // Mảng trạng thái boolean
+    private final List<Boolean> buttonStates = new ArrayList<>();
 
     @Override
     public void start(Stage primaryStage) {
-        primaryStage.setTitle("Chọn số người chơi");
+        // Số lượng nút
+        int numberOfButtons = 5;
 
-        // Tạo và thiết lập giao diện ban đầu
-        primaryStage.setScene(createScene());
+        // Khởi tạo mảng trạng thái và giao diện
+        HBox buttonBox = new HBox(10); // HBox chứa các nút bấm
+
+        for (int i = 0; i < numberOfButtons; i++) {
+            buttonStates.add(false); // Trạng thái mặc định là false
+
+            // Tạo nút bấm ToggleButton
+            ToggleButton toggleButton = new ToggleButton("Button " + (i + 1));
+            toggleButton.setSelected(false);
+
+            int index = i; // Lưu chỉ số của nút
+
+            // Xử lý sự kiện khi nút được bấm
+            toggleButton.setOnAction(e -> {
+                updateButtonStates(index);
+                updateButtonUI(buttonBox);
+            });
+
+            buttonBox.getChildren().add(toggleButton);
+        }
+
+        // Hiển thị giao diện
+        Scene scene = new Scene(buttonBox, 400, 100);
+        primaryStage.setScene(scene);
+        primaryStage.setTitle("Toggle Buttons Example");
         primaryStage.show();
     }
 
-    private Scene createScene() {
-        VBox layout = new VBox(10);
-        layout.setAlignment(Pos.CENTER);
-        layout.setStyle("-fx-padding: 20;");
-
-        // Tiêu đề
-        Label titleLabel = new Label("Chọn số người chơi");
-        titleLabel.setStyle("-fx-font-size: 18px; -fx-font-weight: bold;");
-        layout.getChildren().add(titleLabel);
-
-        // Chế độ đồ họa
-        if (isGraphicMode) {
-            ImageView imageView = new ImageView(new Image("https://via.placeholder.com/150"));
-            imageView.setFitWidth(150);
-            imageView.setFitHeight(150);
-            layout.getChildren().add(imageView);
+    // Cập nhật trạng thái của các nút
+    private void updateButtonStates(int selectedIndex) {
+        for (int i = 0; i < buttonStates.size(); i++) {
+            buttonStates.set(i, i == selectedIndex); // Chỉ nút được chọn mới chuyển sang true
         }
+    }
 
-        // Bộ chọn số người chơi
-        ComboBox<Integer> playerSelector = new ComboBox<>();
-        for (int i = MIN_PLAYERS; i <= MAX_PLAYERS; i++) {
-            playerSelector.getItems().add(i);
+    // Cập nhật giao diện các nút theo trạng thái
+    private void updateButtonUI(HBox buttonBox) {
+        for (int i = 0; i < buttonBox.getChildren().size(); i++) {
+            ToggleButton toggleButton = (ToggleButton) buttonBox.getChildren().get(i);
+            toggleButton.setSelected(buttonStates.get(i));
         }
-        playerSelector.setValue(selectedPlayers);
-        playerSelector.setOnAction(e -> selectedPlayers = playerSelector.getValue());
-        layout.getChildren().add(playerSelector);
+    }
 
-        // Các nút bấm
-        HBox buttonBox = new HBox(10);
-        buttonBox.setAlignment(Pos.CENTER);
-
-        Button confirmButton = new Button("Xác nhận");
-        confirmButton.setOnAction(e -> {
-            Alert alert = new Alert(Alert.AlertType.INFORMATION,
-                    "Bạn đã chọn " + selectedPlayers + " người chơi!",
-                    ButtonType.OK);
-            alert.showAndWait();
-        });
-
-        Button cancelButton = new Button("Hủy");
-        cancelButton.setOnAction(e -> ((Stage) cancelButton.getScene().getWindow()).close());
-
-        Button toggleModeButton = new Button("Chuyển chế độ");
-        toggleModeButton.setOnAction(e -> {
-            isGraphicMode = !isGraphicMode;
-            ((Stage) toggleModeButton.getScene().getWindow()).setScene(createScene());
-        });
-
-        buttonBox.getChildren().addAll(confirmButton, cancelButton, toggleModeButton);
-        layout.getChildren().add(buttonBox);
-
-        return new Scene(layout, 400, 300);
+    public static void main(String[] args) {
+        launch(args);
     }
 }

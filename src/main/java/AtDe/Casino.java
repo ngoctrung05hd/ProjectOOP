@@ -21,12 +21,25 @@ public class Casino {
         return decks.get(deckId).checkAttack(card);
     }
 
-    static public void newGame() {
+    public static int newGame() {
         decks.add(new Deck());
         int newDeckId = decks.size() - 1;
+        return newDeckId;
+    }
+
+    public static void reset(int deckId) {
+        decks.get(deckId).reset();
     }
 
     public static NeedToDefend getNeedToDefend(int deckId) {
         return decks.get(deckId).getNeedToDefend();
+    }
+
+    public static CardsUsed getCardsUsed(int deckId) {
+        return decks.get(deckId).getCardsUsed();
+    }
+
+    public static CardSet getCardSet(int deckId) {
+        return decks.get(deckId).getCardSet();
     }
 }

@@ -1,20 +1,23 @@
 package AtDe;
 
+import java.util.ArrayList;
+
 public class Deck {
-    private int playerCount;
     private CardSet cardSet;
-    public CardsUsed cardsUsed;
+    private CardsUsed cardsUsed;
     private NeedToDefend needToDefend;
 
+
     Deck() {
-        playerCount = 0;
         cardSet = new CardSet();
         cardsUsed = new CardsUsed();
         needToDefend = new NeedToDefend();
     }
 
-    void setPlayerCount(int playerCount) {
-        this.playerCount = playerCount;
+    public void reset() {
+        cardSet = new CardSet();
+        cardsUsed.reset();
+        needToDefend.removeAll();
     }
 
     public boolean checkAttack(Card card) {
@@ -41,5 +44,13 @@ public class Deck {
 
     public NeedToDefend getNeedToDefend() {
         return needToDefend;
+    }
+
+    public CardsUsed getCardsUsed() {
+        return cardsUsed;
+    }
+
+    public CardSet getCardSet() {
+        return cardSet;
     }
 }

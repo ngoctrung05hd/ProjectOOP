@@ -3,30 +3,28 @@ package AtDe;
 import java.util.ArrayList;
 import java.util.Collections;
 
-public class CardsUsed {
-    public CardList cardsUsed;
+public class CardsUsed extends CardList {
     private ArrayList <Boolean> existRank;
 
     public CardsUsed() {
-        this.cardsUsed = new CardList();
+        super();
         this.existRank = new ArrayList<>(Collections.nCopies(Card.COUNT_RANK, Boolean.FALSE));
     }
 
     public void add(Card card) {
-        cardsUsed.add(card);
+        super.add(card);
         existRank.set(card.getRank(), true);
-        cardsUsed.sort();
+        sort();
     }
 
     public void add(CardList cardList) {
-        cardsUsed.add(cardList);
-        cardList.sort();
+        super.add(cardList);
+        sort();
     }
 
     public void reset() {
-        cardsUsed.removeAll();
+        removeAll();
         Collections.fill(existRank, Boolean.FALSE);
-        cardsUsed.sort();
     }
 
     public boolean rankUsed(Card card) {

@@ -5,25 +5,26 @@ import java.util.Objects;
 public class Card extends Base.Card implements Comparable<Card> {
     private static final int[] POINT = {12, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11};
 
-    private static int specialSuit;
+    private int specialSuit;
 
     Card(int rank, int suit) {
         super(rank, suit);
+        specialSuit = -1;
     }
 
     public int[] POINT() {
         return POINT;
     }
 
-    public static void setSpecialSuit(int suit) {
+    public void setSpecialSuit(int suit) {
         specialSuit = suit;
     }
 
-    static public boolean checkDefend(Card card, Card cardDefend) {
-        if (card.getSuit() == specialSuit)
-            return card.compareTo(cardDefend) > 0;
+    public boolean checkDefend(Card cardDefend) {
+        if (getSuit() == specialSuit)
+            return compareTo(cardDefend) > 0;
         else {
-            return card.getSuit() == cardDefend.getSuit() && card.getRank() > cardDefend.getRank();
+            return getSuit() == cardDefend.getSuit() && getRank() > cardDefend.getRank();
         }
     }
 
