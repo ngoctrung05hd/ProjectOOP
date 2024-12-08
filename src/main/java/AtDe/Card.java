@@ -2,17 +2,13 @@ package AtDe;
 
 import java.util.Objects;
 
-public class Card implements Base.Card, Comparable<Card> {
+public class Card extends Base.Card implements Comparable<Card> {
     private static final int[] POINT = {12, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11};
-
-    private final int rank;
-    private final int suit;
 
     private static int specialSuit;
 
-    public Card(int rank, int suit) {
-        this.rank = rank;
-        this.suit = suit;
+    Card(int rank, int suit) {
+        super(rank, suit);
     }
 
     public int[] POINT() {
@@ -23,14 +19,22 @@ public class Card implements Base.Card, Comparable<Card> {
         specialSuit = suit;
     }
 
+    static public boolean checkDefend(Card card, Card cardDefend) {
+        if (card.getSuit() == specialSuit)
+            return card.compareTo(cardDefend) > 0;
+        else {
+            return card.getSuit() == cardDefend.getSuit() && card.getRank() > cardDefend.getRank();
+        }
+    }
+
     public int compareTo(Card card) {
         if (this.suit == specialSuit && card.suit != specialSuit) {
             return 1;
-        }
-        else if (this.suit != specialSuit && card.suit == specialSuit) {
+        } else if (this.suit != specialSuit && card.suit == specialSuit) {
             return -1;
         } else return Integer.compare(this.getPoint(), card.getPoint());
     }
+
     @Override
     public boolean equals(Object obj) {
         if (this == obj) return true;
@@ -43,13 +47,5 @@ public class Card implements Base.Card, Comparable<Card> {
     @Override
     public int hashCode() {
         return Objects.hash(getRank(), getSuit());
-    }
-
-    public int getRank() {
-        return rank;
-    }
-
-    public int getSuit() {
-        return suit;
     }
 }
