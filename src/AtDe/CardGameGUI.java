@@ -6,6 +6,8 @@ import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ToggleButton;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Priority;
 import javafx.scene.layout.VBox;
@@ -83,9 +85,9 @@ public class CardGameGUI extends Application {
         HBox.setHgrow(usedCardsBox, Priority.ALWAYS);
 
         // Khu vực các lá bài bên dưới (hiển thị 5 lá bài trong số 8 lá bài, có thể dịch trái/phải)
-        handBox = new HBox(10);
+        handBox = new HBox(-50);
         handBox.setAlignment(Pos.CENTER);
-        handBox.setPadding(new Insets(10));
+        handBox.setPadding(new Insets(0));
         updateHand();
 
         // Các nút điều hướng (dịch các lá bài)
@@ -157,8 +159,17 @@ public class CardGameGUI extends Application {
 
         for (int i = 0; i < visibleCards && i < handCount; i++) {
             int cardIndex = (startIndexHand + i) % handCount; // Lấy chỉ số lá bài (tuần hoàn)
-            ToggleButton cardButton = new ToggleButton(player.getHand().getCard(cardIndex).CardToString());
+            Image imageOn = new Image(player.getHand().getCard(cardIndex).CardToLink()); // Đường dẫn ảnh "Bật"
+            Image imageOff = new Image(player.getHand().getCard(cardIndex).CardToLink()); // Đường dẫn ảnh "Tắt"
+
+            // Tạo ImageView cho hai trạng thái
+            ImageView imageViewOn = new ImageView(imageOn);
+            ImageView imageViewOff = new ImageView(imageOff);
+            ToggleButton cardButton = new ToggleButton();
+            cardButton.setTranslateX(i * 0);
             cardButton.setSelected(handStates.get(cardIndex));
+            cardButton.setGraphic(imageViewOff);
+
             int index = cardIndex; // Lưu chỉ số thực tế
             //cardButton.setOnAction(e -> handStates.set(index, cardButton.isSelected()));
             cardButton.setOnAction(e -> {
@@ -168,6 +179,8 @@ public class CardGameGUI extends Application {
             });
             handBox.getChildren().add(cardButton);
         }
+
+        handBox.getStylesheets().add(getClass().getResource("style.css").toExternalForm());
     }
 
     // Hàm cập nhật hiển thị các lá bài "Cần đỡ"

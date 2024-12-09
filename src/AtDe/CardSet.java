@@ -3,7 +3,6 @@ package AtDe;
 import java.util.Collections;
 
 public class CardSet extends CardList {
-
     public CardSet() {
         super();
         for (int _rank = 0; _rank < Card.COUNT_RANK; ++_rank)

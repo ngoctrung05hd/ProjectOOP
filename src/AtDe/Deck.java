@@ -6,12 +6,13 @@ public class Deck {
     private CardSet cardSet;
     private CardsUsed cardsUsed;
     private NeedToDefend needToDefend;
-
+    private ArrayList<Member> members;
 
     Deck() {
         cardSet = new CardSet();
         cardsUsed = new CardsUsed();
         needToDefend = new NeedToDefend();
+        members = new ArrayList<>();
     }
 
     public void reset() {

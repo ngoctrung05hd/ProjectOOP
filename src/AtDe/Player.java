@@ -5,12 +5,14 @@ public class Player implements Member{
     private String role;
     private boolean success;
     private int deckId;
+    private Deck deck;
 
     Player(int deckId) {
         this.hand = new Hand();
         this.role = "";
         this.success = false;
         this.deckId = deckId;
+        deck = null;
     }
 
     public void collect(Card card) {
@@ -73,10 +75,15 @@ public class Player implements Member{
     }
 
     public NeedToDefend getNeedToDefend() {
-        return Casino.getNeedToDefend(getDeckId());
+        return deck.getNeedToDefend();
     }
 
     public CardsUsed getCardsUsed() {
-        return Casino.getCardsUsed(getDeckId());
+        return deck.getCardsUsed();
+    }
+
+
+    public void setDeck(Deck deck) {
+        this.deck = deck;
     }
 }

@@ -18,6 +18,24 @@ public abstract class Card {
         return "" + RANKS[getRank()] + SUITS[getSuit()];
     }
 
+    public String CardToLink() {
+        String linkImage = "file:src/image/card/";
+        if (RANKS[getRank()].equals("10")) {
+            linkImage += "t";
+        }
+        else
+            linkImage += RANKS[getRank()];
+        switch (getSuit()) {
+            case 0: linkImage += "s"; break;
+            case 1: linkImage += "c"; break;
+            case 2: linkImage += "d"; break;
+            case 3: linkImage += "h"; break;
+            default:
+        }
+
+        return linkImage + ".gif";
+    }
+
     public int getPoint() {
         return POINT()[getRank()];
     }

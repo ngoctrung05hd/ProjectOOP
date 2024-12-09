@@ -27,18 +27,19 @@ public class GamePlay {
     }
 
     public void main() {
-
-        int newDeckId = Casino.newGame();
-        setDeckId(newDeckId);
+        Deck deck = new Deck();
 
 
-        BotEasy bot = new BotEasy(newDeckId);
-        Player player = new Player(newDeckId);
+        BotEasy bot = new BotEasy(0);
+        Player player = new Player(0);
+
+        bot.setDeck(deck);
+        player.setDeck(deck);
 
         members.add(bot);
         members.add(player);
 
-        CardSet cardSet = Casino.getCardSet(newDeckId);
+        CardSet cardSet = deck.getCardSet();
         System.out.println(cardSet.CardListToString());
 
         int numPlayer = 2;

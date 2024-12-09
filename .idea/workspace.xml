@@ -1,4 +1,137 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
-  <component name="PropertiesComponent">{}</component>
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="b25fc1da-e2ce-4f8a-803f-5a2c49cb41ea" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/src/AtDe/style.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ProjectOOP.iml" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectOOP.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/AtDe/BotEasy.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/AtDe/BotEasy.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/AtDe/Card.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/AtDe/Card.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/AtDe/CardGameGUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/AtDe/CardGameGUI.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/AtDe/CardSet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/AtDe/CardSet.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/AtDe/Deck.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/AtDe/Deck.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/AtDe/GamePlay.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/AtDe/GamePlay.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/AtDe/Player.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/AtDe/Player.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Base/Card.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Base/Card.java" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;customColor&quot;: &quot;&quot;,
+  &quot;associatedIndex&quot;: 8
+}</component>
+  <component name="ProjectId" id="2pydPGJNe4rcyPYItqegbFyJHgh" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Application.Main.executor": "Run",
+    "Application.Test.executor": "Run",
+    "Application.gameMenu.executor": "Run",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "git-widget-placeholder": "NewMaster",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "C:/Program Files/Java/javafx-sdk-23.0.1/lib",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "project.structure.last.edited": "Libraries",
+    "project.structure.proportion": "0.0",
+    "project.structure.side.proportion": "0.0",
+    "vue.rearranger.settings.migration": "true"
+  }
+}]]></component>
+  <component name="RunManager" selected="Application.Test">
+    <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="application.Main" />
+      <module name="ProjectOOP" />
+      <option name="VM_PARAMETERS" value="--module-path &quot;C:\Program Files\Java\javafx-sdk-23.0.1\lib&quot; --add-modules javafx.controls,javafx.fxml " />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="application.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Test" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="AtDe.Test" />
+      <module name="ProjectOOP" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="AtDe.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="gameMenu" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="AtDe.gameMenu" />
+      <module name="ProjectOOP" />
+      <option name="VM_PARAMETERS" value="--module-path &quot;C:\Program Files\Java\javafx-sdk-23.0.1\lib&quot; --add-modules javafx.controls,javafx.fxml " />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="AtDe.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <list>
+      <item itemvalue="Application.Main" />
+      <item itemvalue="Application.Test" />
+      <item itemvalue="Application.gameMenu" />
+    </list>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Application.Test" />
+        <item itemvalue="Application.Main" />
+        <item itemvalue="Application.gameMenu" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-jdk-9823dce3aa75-28b599e66164-intellij.indexing.shared.core-IU-242.23339.11" />
+        <option value="bundled-js-predefined-d6986cc7102b-5c90d61e3bab-JavaScript-IU-242.23339.11" />
+      </set>
+    </attachedChunks>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="b25fc1da-e2ce-4f8a-803f-5a2c49cb41ea" name="Changes" comment="" />
+      <created>1733742224305</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1733742224305</updated>
+      <workItem from="1733742225011" duration="3622000" />
+      <workItem from="1733745924371" duration="30000" />
+      <workItem from="1733756591485" duration="3222000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
 </project>
