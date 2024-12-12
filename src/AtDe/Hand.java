@@ -1,7 +1,5 @@
 package AtDe;
 
-import Base.Card;
-
 import java.util.List;
 
 public class Hand extends CardList {

@@ -4,3 +4,10 @@
     -fx-focus-color: transparent; /* Xóa viền khi chọn */
     -fx-faint-focus-color: transparent; /* Xóa màu mờ của viền */
 }
+.hand-box {
+    -fx-spacing: -50; /* Khoảng cách âm giữa các phần tử */
+    -fx-alignment: center; /* Căn chỉnh giữa */
+    -fx-padding: 0; /* Padding bằng 0 */
+}
+
+

@@ -2,7 +2,7 @@ package AtDe;
 
 import java.util.ArrayList;
 
-public class CardList extends Base.CardList {
+public class CardList extends Base.CardList<Card> {
     public CardList() {
         super();
     }

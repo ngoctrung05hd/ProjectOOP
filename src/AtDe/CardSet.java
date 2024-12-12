@@ -27,13 +27,6 @@ public class CardSet extends CardList {
         return begin;
     }
 
-    public void setBegin(Card begin) {
-        if (this.size() > 0)
-            cards.set(0, begin);
-        else
-            cards.add(begin);
-    }
-
     public Card getEnd() {
         Card back = null;
         if (this.size() > 0) {

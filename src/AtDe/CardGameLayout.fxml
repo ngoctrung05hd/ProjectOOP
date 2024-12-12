@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ToggleButton?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+
+<AnchorPane prefHeight="556.0" prefWidth="733.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="AtDe.CardGameController">
+   <children>
+      <HBox layoutX="63.0" layoutY="516.0" prefHeight="25.0" prefWidth="555.0">
+         <children>
+              <Button fx:id="skipButton" text="Skip" translateX="100.0" />
+              <Button fx:id="playButton" text="Đánh bài" translateX="200.0" />
+             <Button fx:id="drawCardButton" text="Bốc bài" translateX="300.0" />
+         </children>
+      </HBox>
+       <HBox layoutX="15.0" layoutY="332.0" prefHeight="126.0" prefWidth="610.0" spacing="10.0" stylesheets="@style.css">
+           <Button fx:id="prevButton" onAction="#shiftHandLeft" prefHeight="25.0" prefWidth="43.0" text="&lt;" />
+            <HBox fx:id="handBox" alignment="CENTER" prefHeight="126.0" prefWidth="423.0" styleClass="hand-box" stylesheets="@style.css">
+            <children>
+               <ToggleButton mnemonicParsing="false" prefHeight="0.0" prefWidth="0.0" style="-fx-border-width: 0; -fx-background-color: transparent; -fx-padding: 0; -fx-pref-width: 95px; -fx-pref-height: 126px;" stylesheets="@../../../../testJavaFX/bin/application/application.css">
+                  <graphic>
+                     <ImageView fitHeight="126" fitWidth="95">
+                        <image>
+                           <Image url="file:src/image/card/b.gif" />
+                        </image>
+                     </ImageView>
+                  </graphic>
+               </ToggleButton>
+               <ToggleButton layoutX="174.0" layoutY="10.0" mnemonicParsing="false" prefHeight="0.0" prefWidth="0.0" style="-fx-border-width: 0; -fx-background-color: transparent; -fx-padding: 0; -fx-pref-width: 95px; -fx-pref-height: 126px;" stylesheets="@../../../../testJavaFX/bin/application/application.css">
+                  <graphic>
+                     <ImageView fitHeight="126" fitWidth="95">
+                        <image>
+                           <Image url="file:src/image/card/b.gif" />
+                        </image>
+                     </ImageView>
+                  </graphic>
+               </ToggleButton>
+               <ToggleButton layoutX="197.0" layoutY="10.0" mnemonicParsing="false" prefHeight="0.0" prefWidth="0.0" style="-fx-border-width: 0; -fx-background-color: transparent; -fx-padding: 0; -fx-pref-width: 95px; -fx-pref-height: 126px;" stylesheets="@../../../../testJavaFX/bin/application/application.css">
+                  <graphic>
+                     <ImageView fitHeight="126" fitWidth="95">
+                        <image>
+                           <Image url="file:src/image/card/b.gif" />
+                        </image>
+                     </ImageView>
+                  </graphic>
+               </ToggleButton>
+               <ToggleButton layoutX="174.0" layoutY="10.0" mnemonicParsing="false" prefHeight="0.0" prefWidth="0.0" style="-fx-border-width: 0; -fx-background-color: transparent; -fx-padding: 0; -fx-pref-width: 95px; -fx-pref-height: 126px;" stylesheets="@../../../../testJavaFX/bin/application/application.css">
+                  <graphic>
+                     <ImageView fitHeight="126" fitWidth="95">
+                        <image>
+                           <Image url="file:src/image/card/b.gif" />
+                        </image>
+                     </ImageView>
+                  </graphic>
+               </ToggleButton>
+               <ToggleButton layoutX="197.0" layoutY="10.0" mnemonicParsing="false" prefHeight="0.0" prefWidth="0.0" style="-fx-border-width: 0; -fx-background-color: transparent; -fx-padding: 0; -fx-pref-width: 95px; -fx-pref-height: 126px;" stylesheets="@../../../../testJavaFX/bin/application/application.css">
+                  <graphic>
+                     <ImageView fitHeight="126" fitWidth="95">
+                        <image>
+                           <Image url="file:src/image/card/b.gif" />
+                        </image>
+                     </ImageView>
+                  </graphic>
+               </ToggleButton>
+               <ToggleButton layoutX="174.0" layoutY="10.0" mnemonicParsing="false" prefHeight="0.0" prefWidth="0.0" style="-fx-border-width: 0; -fx-background-color: transparent; -fx-padding: 0; -fx-pref-width: 95px; -fx-pref-height: 126px;" stylesheets="@../../../../testJavaFX/bin/application/application.css">
+                  <graphic>
+                     <ImageView fitHeight="126" fitWidth="95">
+                        <image>
+                           <Image url="file:src/image/card/b.gif" />
+                        </image>
+                     </ImageView>
+                  </graphic>
+               </ToggleButton>
+               <ToggleButton layoutX="151.0" layoutY="10.0" mnemonicParsing="false" prefHeight="0.0" prefWidth="0.0" style="-fx-border-width: 0; -fx-background-color: transparent; -fx-padding: 0; -fx-pref-width: 95px; -fx-pref-height: 126px;" stylesheets="@../../../../testJavaFX/bin/application/application.css">
+                  <graphic>
+                     <ImageView fitHeight="126" fitWidth="95">
+                        <image>
+                           <Image url="file:src/image/card/b.gif" />
+                        </image>
+                     </ImageView>
+                  </graphic>
+               </ToggleButton>
+               <ToggleButton layoutX="129.0" layoutY="10.0" mnemonicParsing="false" prefHeight="0.0" prefWidth="0.0" style="-fx-border-width: 0; -fx-background-color: transparent; -fx-padding: 0; -fx-pref-width: 95px; -fx-pref-height: 126px;" stylesheets="@../../../../testJavaFX/bin/application/application.css">
+                  <graphic>
+                     <ImageView fitHeight="126" fitWidth="95">
+                        <image>
+                           <Image url="@../image/card/b.gif" />
+                        </image>
+                     </ImageView>
+                  </graphic>
+               </ToggleButton>
+            </children>
+         </HBox>
+           <Button fx:id="nextButton" onAction="#shiftHandRight" prefHeight="25.0" prefWidth="32.0" text="&gt;" />
+       </HBox>
+        <HBox alignment="CENTER" layoutX="367.0" layoutY="117.0" prefHeight="71.0" prefWidth="156.0" spacing="10.0">
+            <Button fx:id="prevUsedButton" onAction="#shiftUsedCardsLeft" prefHeight="25.0" prefWidth="35.0" text="&lt;" />
+         <HBox fx:id="usedCardsBox" prefHeight="25.0" prefWidth="0.0" />
+            <Button fx:id="nextUsedButton" onAction="#shiftUsedCardsRight" prefHeight="25.0" prefWidth="31.0" text="&gt;" />
+        </HBox>
+        <HBox alignment="CENTER" layoutX="31.0" layoutY="117.0" prefHeight="71.0" prefWidth="170.0" spacing="10.0">
+            <Button fx:id="prevNeedToDefendButton" onAction="#shiftNeedToDefendCardsLeft" prefHeight="25.0" prefWidth="31.0" text="&lt;" />
+         <HBox fx:id="needToDefendCardsBox" prefHeight="25.0" prefWidth="0.0" />
+            <Button fx:id="nextNeedToDefendButton" onAction="#shiftNeedToDefendCardsRight" prefHeight="25.0" prefWidth="31.0" text="&gt;" />
+        </HBox>
+   </children>
+</AnchorPane>

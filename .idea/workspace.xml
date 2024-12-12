@@ -5,26 +5,47 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="b25fc1da-e2ce-4f8a-803f-5a2c49cb41ea" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/AtDe/style.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Base/Deck.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/application/CardGameGUI.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ProjectOOP.iml" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectOOP.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/AtDe/BotEasy.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/AtDe/BotEasy.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/AtDe/Card.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/AtDe/Card.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/AtDe/CardGameGUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/AtDe/CardGameGUI.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/AtDe/CardList.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/AtDe/CardList.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/AtDe/CardSet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/AtDe/CardSet.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/AtDe/Deck.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/AtDe/Deck.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/AtDe/GamePlay.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/AtDe/GamePlay.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/AtDe/Player.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/AtDe/Player.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Base/Card.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Base/Card.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/AtDe/Hand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/AtDe/Hand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/AtDe/Test.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/AtDe/Test.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/AtDe/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/AtDe/style.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Base/CardList.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Base/CardList.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Interface" />
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;TrungNN230074&quot;
+  }
+}</component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/ngoctrung05hd/ProjectOOP.git&quot;,
+    &quot;accountId&quot;: &quot;d96478b4-3a7b-4403-a2d3-4ba2b6ffe711&quot;
+  }
+}</component>
   <component name="ProjectColorInfo">{
   &quot;customColor&quot;: &quot;&quot;,
   &quot;associatedIndex&quot;: 8
@@ -34,34 +55,55 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Application.Main.executor": "Run",
-    "Application.Test.executor": "Run",
-    "Application.gameMenu.executor": "Run",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "NewMaster",
-    "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "C:/Program Files/Java/javafx-sdk-23.0.1/lib",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "project.structure.last.edited": "Libraries",
-    "project.structure.proportion": "0.0",
-    "project.structure.side.proportion": "0.0",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Application.CardGameGUI.executor&quot;: &quot;Run&quot;,
+    &quot;Application.Main.executor&quot;: &quot;Run&quot;,
+    &quot;Application.Test.executor&quot;: &quot;Run&quot;,
+    &quot;Application.gameMenu.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;NewMaster&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;D:/clone/SparrowAdventure&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Libraries&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="D:\ProjectOOP\src\AtDe" />
+    </key>
+  </component>
   <component name="RunManager" selected="Application.Test">
+    <configuration name="CardGameGUI" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="AtDe.CardGameGUI" />
+      <module name="ProjectOOP" />
+      <option name="VM_PARAMETERS" value="--module-path &quot;C:\Program Files\Java\javafx-sdk-23.0.1\lib&quot; --add-modules javafx.controls,javafx.fxml " />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="AtDe.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="application.Main" />
       <module name="ProjectOOP" />
       <option name="VM_PARAMETERS" value="--module-path &quot;C:\Program Files\Java\javafx-sdk-23.0.1\lib&quot; --add-modules javafx.controls,javafx.fxml " />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="application.*" />
+          <option name="PATTERN" value="AtDe.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -97,6 +139,7 @@
       </method>
     </configuration>
     <list>
+      <item itemvalue="Application.CardGameGUI" />
       <item itemvalue="Application.Main" />
       <item itemvalue="Application.Test" />
       <item itemvalue="Application.gameMenu" />
@@ -104,6 +147,7 @@
     <recent_temporary>
       <list>
         <item itemvalue="Application.Test" />
+        <item itemvalue="Application.CardGameGUI" />
         <item itemvalue="Application.Main" />
         <item itemvalue="Application.gameMenu" />
       </list>
@@ -128,6 +172,13 @@
       <workItem from="1733742225011" duration="3622000" />
       <workItem from="1733745924371" duration="30000" />
       <workItem from="1733756591485" duration="3222000" />
+      <workItem from="1733795673464" duration="6514000" />
+      <workItem from="1733817072291" duration="28000" />
+      <workItem from="1733817625979" duration="833000" />
+      <workItem from="1733844499529" duration="5392000" />
+      <workItem from="1733883222719" duration="369000" />
+      <workItem from="1733924680867" duration="3032000" />
+      <workItem from="1733974076100" duration="1914000" />
     </task>
     <servers />
   </component>

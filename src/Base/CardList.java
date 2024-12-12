@@ -3,8 +3,8 @@ package Base;
 import java.util.ArrayList;
 import java.util.List;
 
-public class CardList {
-    protected List<Card> cards;
+public class CardList <T extends Card> {
+    protected List<T> cards;
 
     public CardList() {
         cards = new ArrayList<>();
@@ -21,7 +21,7 @@ public class CardList {
         });
     }
 
-    public void add(Card card) {
+    public void add(T card) {
         cards.add(card);
     }
 
@@ -29,11 +29,11 @@ public class CardList {
         cards.addAll(cardList.getAll());
     }
 
-    protected List<Card> getAll() {
+    protected List<T> getAll() {
         return cards;
     }
 
-    public void remove(Card card) {
+    public void remove(T card) {
         cards.remove(card);
     }
 
@@ -45,7 +45,7 @@ public class CardList {
         cards.clear();
     }
 
-    public Card getCard(int index) {
+    public T getCard(int index) {
         return cards.get(index);
     }
 

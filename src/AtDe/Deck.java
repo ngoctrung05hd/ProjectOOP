@@ -2,7 +2,7 @@ package AtDe;
 
 import java.util.ArrayList;
 
-public class Deck {
+public class Deck implements Base.Deck{
     private CardSet cardSet;
     private CardsUsed cardsUsed;
     private NeedToDefend needToDefend;
@@ -35,7 +35,7 @@ public class Deck {
         cardsUsed.add(cardDefend);
     }
 
-    public CardList getCards(int count) {
+    private CardList getCards(int count) {
         CardList cardList = new CardList();
         while (count > 0 && cardSet.size() > 0) {
             cardList.add(cardSet.getEnd());
