@@ -20,11 +20,11 @@ public class Card extends Base.Card implements Comparable<Card> {
         specialSuit = suit;
     }
 
-    public boolean checkDefend(Card cardDefend) {
+    public boolean checkDefend(Card cardNeedToDefend) {
         if (getSuit() == specialSuit)
-            return compareTo(cardDefend) > 0;
+            return compareTo(cardNeedToDefend) > 0;
         else {
-            return getSuit() == cardDefend.getSuit() && getRank() > cardDefend.getRank();
+            return getSuit() == cardNeedToDefend.getSuit() && POINT[getRank()] > POINT[cardNeedToDefend.getRank()];
         }
     }
 

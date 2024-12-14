@@ -25,6 +25,32 @@ public class Deck implements Base.Deck{
         return cardsUsed.rankUsed(card);
     }
 
+    public boolean checkAttack(CardList attackCards) {
+        for (int i = 0; i < attackCards.size(); ++i) {
+            if (!checkAttack(attackCards.getCard(i)))
+                return false;
+        }
+        return true;
+    }
+
+    public boolean checkAttackFirstMove(CardList attackCards) {
+        if (attackCards.size() <= 0)
+            return false;
+        for (int i = 0; i < attackCards.size(); ++i) {
+            if (attackCards.getCard(0).getRank() != attackCards.getCard(i).getRank())
+                return false;
+        }
+        return true;
+    }
+
+    public boolean checkDefend(Card needToDefendCard, Card card) {
+        return card.checkDefend(needToDefendCard);
+    }
+
+    public boolean checkDefend(CardList needToDefendCards, CardList pickedCards) {
+        return needToDefendCards.size() == 1 && pickedCards.size() == 1 && checkDefend(needToDefendCards.getFirstCard(), pickedCards.getFirstCard());
+    }
+
     public void attack(CardList cardList) {
         needToDefend.add(cardList);
         cardsUsed.add(cardList);

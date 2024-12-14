@@ -54,6 +54,8 @@ public class GamePlay {
             members.get(i).setRole("attack");
         members.get(1).setRole("defend");
 
+        members.get(1).getHand().sort();
+
         members.get(0).getMove(true);
 
         CardGameGUI.GUI(player);

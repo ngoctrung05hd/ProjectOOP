@@ -45,8 +45,8 @@ public class BotEasy implements Member {
         }
         else {
             for (int i = 0; i < hand.size(); ++i){
-                    if (deck.checkAttack((Card) hand.getCard(i))) {
-                        attackCards.add((Card) hand.getCard(i));
+                    if (deck.checkAttack(hand.getCard(i))) {
+                        attackCards.add(hand.getCard(i));
                         hand.remove(i);
                     }
                 }
@@ -59,8 +59,9 @@ public class BotEasy implements Member {
         NeedToDefend needToDefend = deck.getNeedToDefend();
         for (int i = 0; i < hand.size(); ++i) {
             for (int j = 0; j < needToDefend.size(); ++j) {
-                if (((Card)needToDefend.getCard(j)).checkDefend((Card) hand.getCard(i))) {
-                    deck.defend((Card) needToDefend.getCard(j), (Card) hand.getCard(i));
+                if (deck.checkDefend(needToDefend.getCard(j), hand.getCard(i))) {
+                    deck.defend(needToDefend.getCard(j), hand.getCard(i));
+                    hand.remove(i);
                     setSuccess(true);
                 }
             }

@@ -35,7 +35,7 @@ public class CardGameGUI extends Application {
     }
 
     public static void GUI(Player p) {
-        player= p;
+        player = p;
         main(null);
     }
 }

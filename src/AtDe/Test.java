@@ -20,8 +20,6 @@ public class Test {
         executor.execute(() -> gameLoop(2));
         executor.execute(() -> gameLoop(3));
 
-
-
         executor.shutdown();
     }
 

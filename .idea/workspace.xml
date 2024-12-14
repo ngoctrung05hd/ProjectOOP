@@ -5,18 +5,17 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="b25fc1da-e2ce-4f8a-803f-5a2c49cb41ea" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Base/Deck.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/application/CardGameGUI.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/TienLenMienNam/CardList.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/AtDe/BotEasy.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/AtDe/BotEasy.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/AtDe/Card.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/AtDe/Card.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/AtDe/CardGameController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/AtDe/CardGameController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/AtDe/CardGameGUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/AtDe/CardGameGUI.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/AtDe/CardList.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/AtDe/CardList.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/AtDe/CardSet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/AtDe/CardSet.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/AtDe/Deck.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/AtDe/Deck.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/AtDe/Hand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/AtDe/Hand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/AtDe/GamePlay.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/AtDe/GamePlay.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/AtDe/NeedToDefend.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/AtDe/NeedToDefend.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/AtDe/Player.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/AtDe/Player.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/AtDe/Test.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/AtDe/Test.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/AtDe/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/AtDe/style.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Base/CardList.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Base/CardList.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -178,7 +177,8 @@
       <workItem from="1733844499529" duration="5392000" />
       <workItem from="1733883222719" duration="369000" />
       <workItem from="1733924680867" duration="3032000" />
-      <workItem from="1733974076100" duration="1914000" />
+      <workItem from="1733974076100" duration="6938000" />
+      <workItem from="1734143736171" duration="4501000" />
     </task>
     <servers />
   </component>

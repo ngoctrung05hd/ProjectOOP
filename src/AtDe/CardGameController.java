@@ -86,13 +86,31 @@ public class CardGameController {
     }
 
     private boolean checkMove() {
-        int count = 0;
+        CardList pickedCard = new CardList();
         for (int i = 0; i < handCount; i++) {
-            if (handStates.get(i) == true) {
-                ++count;
+            if (handStates.get(i)) {
+                pickedCard.add(player.getHand().getCard(i));
             }
         }
-        return (count == 1);
+
+        if (player.getRole().equals("attack")) {
+            if (player.isFirstMove()) {
+                return player.getDeck().checkAttackFirstMove(pickedCard);
+            }
+            else  {
+                return player.getDeck().checkAttack(pickedCard);
+            }
+        }
+        else {
+            CardList defendCard = new CardList();
+            for (int i = 0; i < needToDefendCardsCount; i++) {
+                if (needToDefendCardsStates.get(i)) {
+                    defendCard.add(player.getNeedToDefend().getCard(i));
+                }
+            }
+
+            return player.getDeck().checkDefend(defendCard, pickedCard);
+        }
     }
 
 
@@ -154,6 +172,7 @@ public class CardGameController {
             int index = cardIndex; // Lưu chỉ số thực tế
             cardButton.setOnAction(e -> {
                 needToDefendCardsStates.set(index, cardButton.isSelected());
+                playButton.setDisable(!checkMove());
                 System.out.println(needToDefendCardsStates);
             });
             needToDefendCardsBox.getChildren().add(cardButton);
@@ -177,12 +196,13 @@ public class CardGameController {
     	        cardButton.setTranslateX(i * 0);
     	        cardButton.setSelected(usedCardsStates.get(cardIndex));
     	        cardButton.setGraphic(imageViewOff);
-
+                /*
     	        int index = cardIndex; // Lưu chỉ số thực tế
     	        cardButton.setOnAction(e -> {
     	            usedCardsStates.set(index, cardButton.isSelected());
     	            System.out.println(usedCardsStates);
     	        });
+                */
     	        usedCardsBox.getChildren().add(cardButton);
     	    }
 

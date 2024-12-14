@@ -4,6 +4,7 @@ public class Player implements Member{
     private Hand hand;
     private String role;
     private boolean success;
+    private boolean firstMove = false;
     private int deckId;
     private Deck deck;
 
@@ -29,6 +30,7 @@ public class Player implements Member{
     }
 
     public void attack(boolean firstMove) {
+        setFirstMove(firstMove);
         if (firstMove) {
 
         }
@@ -82,8 +84,23 @@ public class Player implements Member{
         return deck.getCardsUsed();
     }
 
+    public boolean isFirstMove() {
+        return firstMove;
+    }
+
+    public void setFirstMove(boolean firstMove) {
+        this.firstMove = firstMove;
+    }
 
     public void setDeck(Deck deck) {
         this.deck = deck;
+    }
+
+    public Deck getDeck() {
+        return deck;
+    }
+
+    public boolean isSuccess() {
+        return success;
     }
 }
