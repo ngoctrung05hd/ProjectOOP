@@ -22,6 +22,9 @@ public class CardGameController {
     private int startIndexNeedToDefend = 0;           // Vị trí bắt đầu hiển thị lá bài "Cần đỡ"
     private int startIndexUsed = 0;         // Vị trí bắt đầu hiển thị lá bài "Đã sử dụng"
 
+    private CardList pickedCards = new CardList();
+    private CardList defendCards = new CardList();
+
     @FXML
     private HBox needToDefendCardsBox;
     @FXML
@@ -44,6 +47,7 @@ public class CardGameController {
         playButton.setDisable(true); // Đặt mặc định là không thể đánh bài
         skipButton.setOnAction(e -> skip());
         drawCardButton.setOnAction(e -> draw());
+        playButton.setOnAction(e -> play());
         // updateHand();
     }
 
@@ -59,13 +63,22 @@ public class CardGameController {
     	updateHand();
         updateNeedToDefendCards();
         updateUsedCards();
-    	
     }
     private void skip() {
     	System.out.println("Bỏ lượt");
     }
     private void play() {
-    	
+        if (player.getRole().equals("attack")) {
+            player.attack(pickedCards);
+        }
+        else {
+            player.defend(defendCards.getFirstCard(), pickedCards.getFirstCard());
+        }
+        resize();
+        update();
+        pickedCards.removeAll();
+        defendCards.removeAll();
+        playButton.setDisable(true);
     }
     private void draw() {
     	System.out.println("Bốc bài");
@@ -74,6 +87,9 @@ public class CardGameController {
         setHandCount(player.getHand().size());
         setNeedToDefendCardsCount(player.getNeedToDefend().size());
         setUsedCardsCount(player.getCardsUsed().size());
+        handStates.clear();
+        needToDefendCardsStates.clear();
+        usedCardsStates.clear();
         for (int i = 0; i < handCount; i++) {
             handStates.add(false); // Trạng thái mặc định
         }
@@ -86,30 +102,33 @@ public class CardGameController {
     }
 
     private boolean checkMove() {
-        CardList pickedCard = new CardList();
+        pickedCards.removeAll();
         for (int i = 0; i < handCount; i++) {
             if (handStates.get(i)) {
-                pickedCard.add(player.getHand().getCard(i));
+                pickedCards.add(player.getHand().getCard(i));
             }
         }
+
+        if (pickedCards.size() == 0)
+            return false;
 
         if (player.getRole().equals("attack")) {
             if (player.isFirstMove()) {
-                return player.getDeck().checkAttackFirstMove(pickedCard);
+                return player.getDeck().checkAttackFirstMove(pickedCards);
             }
             else  {
-                return player.getDeck().checkAttack(pickedCard);
+                return player.getDeck().checkAttack(pickedCards);
             }
         }
         else {
-            CardList defendCard = new CardList();
+            defendCards.removeAll();
             for (int i = 0; i < needToDefendCardsCount; i++) {
                 if (needToDefendCardsStates.get(i)) {
-                    defendCard.add(player.getNeedToDefend().getCard(i));
+                    defendCards.add(player.getNeedToDefend().getCard(i));
                 }
             }
 
-            return player.getDeck().checkDefend(defendCard, pickedCard);
+            return player.getDeck().checkDefend(defendCards, pickedCards);
         }
     }
 
@@ -170,11 +189,13 @@ public class CardGameController {
             cardButton.setGraphic(imageViewOff);
 
             int index = cardIndex; // Lưu chỉ số thực tế
-            cardButton.setOnAction(e -> {
-                needToDefendCardsStates.set(index, cardButton.isSelected());
-                playButton.setDisable(!checkMove());
-                System.out.println(needToDefendCardsStates);
-            });
+            if (player.getRole().equals("defend")) {
+                cardButton.setOnAction(e -> {
+                    needToDefendCardsStates.set(index, cardButton.isSelected());
+                    playButton.setDisable(!checkMove());
+                    System.out.println(needToDefendCardsStates);
+                });
+            }
             needToDefendCardsBox.getChildren().add(cardButton);
         }
 

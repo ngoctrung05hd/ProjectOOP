@@ -1,6 +1,6 @@
 package AtDe;
 
-public class BotEasy implements Member {
+public class BotEasy implements Member, Base.Bot {
     private Hand hand;
     private String role;
     private boolean success;

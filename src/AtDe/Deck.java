@@ -56,9 +56,9 @@ public class Deck implements Base.Deck{
         cardsUsed.add(cardList);
     }
 
-    public void defend(Card card, Card cardDefend) {
-        needToDefend.remove(card);
-        cardsUsed.add(cardDefend);
+    public void defend(Card needToDefendCard, Card card) {
+        needToDefend.remove(needToDefendCard);
+        cardsUsed.add(card);
     }
 
     private CardList getCards(int count) {

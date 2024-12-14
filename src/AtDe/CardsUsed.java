@@ -19,6 +19,8 @@ public class CardsUsed extends CardList {
 
     public void add(CardList cardList) {
         super.add(cardList);
+        if (cardList.size() > 0)
+            existRank.set(cardList.getCard(0).getRank(), true);
         sort();
     }
 

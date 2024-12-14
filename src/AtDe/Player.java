@@ -21,26 +21,19 @@ public class Player implements Member{
     }
 
     public void getMove(boolean firstMove) {
-        if (getRole().equals("attack")) {
-            attack(firstMove);
-        }
-        else {
-            defend();
-        }
-    }
-
-    public void attack(boolean firstMove) {
         setFirstMove(firstMove);
-        if (firstMove) {
-
-        }
-        else {
-
-        }
     }
 
-    public void defend() {
+    public void attack(CardList attackCards) {
+        setFirstMove(false);
+        for (int i = 0; i < attackCards.size(); ++i)
+            hand.remove(attackCards.getCard(i));
+        deck.attack(attackCards);
+    }
 
+    public void defend(Card needToDefend, Card card) {
+        deck.defend(needToDefend, card);
+        hand.remove(card);
     }
 
     public void clearHand() {

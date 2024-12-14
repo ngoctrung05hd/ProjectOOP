@@ -51,12 +51,13 @@ public class GamePlay {
         }
 
         for (int i = 0; i < numPlayer; ++i)
-            members.get(i).setRole("attack");
-        members.get(1).setRole("defend");
+            members.get(i).setRole("defend");
+        members.get(1).setRole("attack");
 
         members.get(1).getHand().sort();
+        members.get(1).getMove(true);
 
-        members.get(0).getMove(true);
+        //members.get(0).getMove(true);
 
         CardGameGUI.GUI(player);
     }
