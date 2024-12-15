@@ -1,72 +1,31 @@
 package AtDe;
 
+import AtDe.Components.CardSet;
+import AtDe.Components.Deck;
+import AtDe.Member.BotEasy;
+import AtDe.Member.Member;
+import AtDe.Member.Player;
+import AtDe.UserInterface.CardGameGUI;
+import javafx.application.Application;
+
 import java.util.ArrayList;
 
 public class GamePlay {
     int deckId;
     Casino casino;
-    ArrayList<Member> members;
 
     GamePlay() {
         deckId = -1;
         casino = new Casino();
-        members = new ArrayList<>();
-    }
-
-    void reset() {
-        Casino.reset(getDeckId());
-    }
-
-    boolean endGame() {
-        int count = 0;
-        for (int i = 0; i < members.size(); i++) {
-            if (members.get(i).getHand().size() == 0)
-                ++count;
-        }
-        return (count == members.size() - 1);
     }
 
     public void main() {
-        Deck deck = new Deck();
-
-
-        BotEasy bot = new BotEasy(0);
-        Player player = new Player(0);
-
-        bot.setDeck(deck);
-        player.setDeck(deck);
-
-        members.add(bot);
-        members.add(player);
-
-        CardSet cardSet = deck.getCardSet();
-        System.out.println(cardSet.CardListToString());
-
-        int numPlayer = 2;
-
-        for (int turn = 0; turn < 8; ++turn) {
-            for (int i = 0; i < numPlayer; ++i) {
-                members.get(i).collect(cardSet.getEnd());
-            }
-        }
-
-        for (int i = 0; i < numPlayer; ++i)
-            members.get(i).setRole("defend");
-        members.get(1).setRole("attack");
-
-        members.get(1).getHand().sort();
-        members.get(1).getMove(true);
-
-        //members.get(0).getMove(true);
-
-        CardGameGUI.GUI(player);
-    }
-
-    private void setDeckId(int deckId) {
-        this.deckId = deckId;
-    }
-
-    public int getDeckId() {
-        return deckId;
+    	Deck deck = new Deck();
+    	Player player = new Player();
+    	BotEasy bot = new BotEasy();
+    	deck.addMember(player);
+    	deck.addMember(bot);
+    	deck.newGame();
+    	CardGameGUI.GUI(deck);
     }
 }

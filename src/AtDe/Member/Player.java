@@ -1,18 +1,25 @@
-package AtDe;
+package AtDe.Member;
+
+import AtDe.Components.CardsUsed;
+import AtDe.Components.Hand;
+import AtDe.Components.NeedToDefend;
+import AtDe.Core.Card;
+import AtDe.Core.CardList;
+import AtDe.Components.Deck;
 
 public class Player implements Member{
     private Hand hand;
     private String role;
     private boolean success;
     private boolean firstMove = false;
-    private int deckId;
     private Deck deck;
+    private boolean endTurn;
+    private String name;
 
-    Player(int deckId) {
+    public Player() {
         this.hand = new Hand();
         this.role = "";
         this.success = false;
-        this.deckId = deckId;
         deck = null;
     }
 
@@ -20,20 +27,26 @@ public class Player implements Member{
         hand.add(card);
     }
 
-    public void getMove(boolean firstMove) {
+    public void getMove() {
+    	boolean firstMove = (deck.getNeedToDefend().size() == 0);
+    	setSuccess(false);
         setFirstMove(firstMove);
     }
 
     public void attack(CardList attackCards) {
+    	System.out.println("Attack: " + hand.CardListToString());
         setFirstMove(false);
+        
         for (int i = 0; i < attackCards.size(); ++i)
             hand.remove(attackCards.getCard(i));
         deck.attack(attackCards);
     }
 
     public void defend(Card needToDefend, Card card) {
-        deck.defend(needToDefend, card);
-        hand.remove(card);
+    	System.out.println("Defend: " + hand.CardListToString());
+        hand.remove(card);    	
+    	deck.defend(needToDefend, card);
+        setSuccess(true);
     }
 
     public void clearHand() {
@@ -57,16 +70,8 @@ public class Player implements Member{
         return success;
     }
 
-    public void setDeckId(int deckId) {
-        this.deckId = deckId;
-    }
-
     public Hand getHand() {
         return hand;
-    }
-
-    public int getDeckId() {
-        return deckId;
     }
 
     public NeedToDefend getNeedToDefend() {
@@ -91,6 +96,22 @@ public class Player implements Member{
 
     public Deck getDeck() {
         return deck;
+    }
+
+    public boolean isEndTurn() {
+        return endTurn;
+    }
+
+    public void setEndTurn(boolean endTurn) {
+        this.endTurn = endTurn;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 
     public boolean isSuccess() {

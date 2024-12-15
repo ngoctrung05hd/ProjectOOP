@@ -1,4 +1,7 @@
-package AtDe;
+package AtDe.Components;
+
+import AtDe.Core.Card;
+import AtDe.Core.CardList;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -23,10 +26,14 @@ public class CardsUsed extends CardList {
             existRank.set(cardList.getCard(0).getRank(), true);
         sort();
     }
+    
+    public void resetExistRank() {
+        Collections.fill(existRank, Boolean.FALSE);
+    }
 
     public void reset() {
         removeAll();
-        Collections.fill(existRank, Boolean.FALSE);
+        resetExistRank();
     }
 
     public boolean rankUsed(Card card) {

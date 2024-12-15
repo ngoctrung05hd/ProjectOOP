@@ -1,6 +1,6 @@
-package AtDe;
+package AtDe.UserInterface;
 
-import AtDe.CardGameController;
+import AtDe.Components.Deck;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -10,18 +10,22 @@ import javafx.stage.Stage;
 import java.io.IOException;
 
 public class CardGameGUI extends Application {
-    static Player player;
+    static CardGameController controller;
+    static Deck deck;
 
     @Override
     public void start(Stage primaryStage) throws IOException{
-        // Khởi tạo trạng thái các lá bài
-
-        // Khu vực các lá bài "Cần đỡ"
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("../AtDe/CardGameLayout.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("CardGameLayout.fxml"));
         Parent root = loader.load();
+        if (deck == null) {
+        	System.out.println("GG");
+        	return;
+        }
 
         // Lấy Controller và truyền dữ liệu player
-        CardGameController controller = loader.getController();
+        controller = loader.getController();
+        deck.setController(controller);
+        controller.setPlayer(deck.getMember(deck.getStartMemberId()));
 
         // Tạo scene
         Scene scene = new Scene(root);
@@ -30,12 +34,15 @@ public class CardGameGUI extends Application {
         primaryStage.show();
     }
 
+    public CardGameController getController() {
+        return controller;
+    }
+
     public static void main(String[] args) {
         launch(args);
     }
-
-    public static void GUI(Player p) {
-        player = p;
+    public static void GUI(Deck deck) {
+        CardGameGUI.deck = deck;
         main(null);
     }
 }

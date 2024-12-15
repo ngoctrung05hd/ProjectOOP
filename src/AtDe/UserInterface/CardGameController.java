@@ -1,10 +1,15 @@
-package AtDe;
+package AtDe.UserInterface;
 
 import java.util.ArrayList;
+import java.util.List;
 
+import AtDe.Core.Card;
+import AtDe.Core.CardList;
+import AtDe.Member.Player;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.ToggleButton;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -32,31 +37,40 @@ public class CardGameController {
     @FXML
     private HBox handBox;
     @FXML
+    private HBox speacialCardBox;
+    @FXML
     private Button prevNeedToDefendButton, nextNeedToDefendButton, prevUsedButton, nextUsedButton;
     @FXML
-    private Button prevButton, nextButton, skipButton, playButton, drawCardButton;
-    @FXML    
-    private Image[] cardImages = new Image[52];
+    private Button prevButton, nextButton, endTurnButton, playButton;
 
-    static Player player = CardGameGUI.player;
+    @FXML
+    private Label remainingCardLabel;
 
+    public List<Player> players;
+
+    public Player player;
+
+    @FXML
     public void initialize() {
-        // Khởi tạo các trạng thái ban đầu
-    	resize();
-    	update();
+    }
+
+    public void display() {
+        resize();
+        update();
+    	updateSpeacialCards();
         playButton.setDisable(true); // Đặt mặc định là không thể đánh bài
-        skipButton.setOnAction(e -> skip());
-        drawCardButton.setOnAction(e -> draw());
+        endTurnButton.setOnAction(e -> endTurn());
         playButton.setOnAction(e -> play());
-        // updateHand();
+
+        updateHand();
+        updateNeedToDefendCards();
+        updateUsedCards();
+        updateRemainingCardLabel();
     }
 
     public void setPlayer(Player player) {
         this.player = player;
-        // Cập nhật giao diện dựa trên dữ liệu từ player
-        updateHand();
-        updateNeedToDefendCards();
-        updateUsedCards();
+        display();
     }
 
     private void update() {
@@ -64,8 +78,10 @@ public class CardGameController {
         updateNeedToDefendCards();
         updateUsedCards();
     }
-    private void skip() {
-    	System.out.println("Bỏ lượt");
+    private void endTurn() {
+        System.out.println("Kết thúc lượt");
+        player.setEndTurn(true);
+        player.getDeck().endTurn();
     }
     private void play() {
         if (player.getRole().equals("attack")) {
@@ -74,11 +90,6 @@ public class CardGameController {
         else {
             player.defend(defendCards.getFirstCard(), pickedCards.getFirstCard());
         }
-        resize();
-        update();
-        pickedCards.removeAll();
-        defendCards.removeAll();
-        playButton.setDisable(true);
     }
     private void draw() {
     	System.out.println("Bốc bài");
@@ -111,6 +122,7 @@ public class CardGameController {
 
         if (pickedCards.size() == 0)
             return false;
+        
 
         if (player.getRole().equals("attack")) {
             if (player.isFirstMove()) {
@@ -137,7 +149,7 @@ public class CardGameController {
     private void updateHand() {
         handBox.getChildren().clear();
 
-        for (int i = 0; i < visibleCards && i < handCount; i++) {
+        for (int i = 0; i < 8 && i < handCount; i++) {
             int cardIndex = (startIndexHand + i) % handCount; // Lấy chỉ số lá bài (tuần hoàn)
             Image imageOn = new Image(player.getHand().getCard(cardIndex).CardToLink()); // Đường dẫn ảnh "Bật"
             Image imageOff = new Image(player.getHand().getCard(cardIndex).CardToLink()); // Đường dẫn ảnh "Tắt"
@@ -159,6 +171,7 @@ public class CardGameController {
             cardButton.setOnAction(e -> {
                 handStates.set(index, cardButton.isSelected());
                 playButton.setDisable(!checkMove());
+                System.out.println(player.getNeedToDefend().CardListToString());
                 System.out.println(handStates);
                 if(handStates.get(index)) {
                     cardButton.setTranslateY(-20);
@@ -189,47 +202,73 @@ public class CardGameController {
             cardButton.setGraphic(imageViewOff);
 
             int index = cardIndex; // Lưu chỉ số thực tế
-            if (player.getRole().equals("defend")) {
-                cardButton.setOnAction(e -> {
-                    needToDefendCardsStates.set(index, cardButton.isSelected());
-                    playButton.setDisable(!checkMove());
-                    System.out.println(needToDefendCardsStates);
-                });
+            if(needToDefendCardsStates.get(index)) {
+                cardButton.setTranslateY(-20);
+            } else {
+                cardButton.setTranslateY(0);
             }
+            cardButton.setOnAction(e -> {
+                needToDefendCardsStates.set(index, cardButton.isSelected());
+                playButton.setDisable(!checkMove());
+                System.out.println(needToDefendCardsStates);
+                if(needToDefendCardsStates.get(index)) {
+                    cardButton.setTranslateY(-20);
+                } else {
+                    cardButton.setTranslateY(0);
+                }
+            });
             needToDefendCardsBox.getChildren().add(cardButton);
         }
 
         needToDefendCardsBox.getStylesheets().add(getClass().getResource("style.css").toExternalForm());
+        needToDefendCardsBox.getStyleClass().add("speacial-card-box");
     }
 
     // Hàm cập nhật hiển thị các lá bài "Đã sử dụng" (Không có tính năng chọn)
     private void updateUsedCards() {
-    	 usedCardsBox.getChildren().clear();
-    	    for (int i = 0; i < visibleCards && i < usedCardsCount; i++) {
-    	        int cardIndex = (startIndexUsed + i) % usedCardsCount; // Lấy chỉ số lá bài (tuần hoàn)
-    	        Image imageOn = new Image(player.getCardsUsed().getCard(cardIndex).CardToLink()); // Đường dẫn ảnh "Bật"
-    	        Image imageOff = new Image(player.getCardsUsed().getCard(cardIndex).CardToLink()); // Đường dẫn ảnh "Tắt"
+   	 usedCardsBox.getChildren().clear();
+   	    for (int i = 0; i < visibleCards && i < usedCardsCount; i++) {
+   	        int cardIndex = (startIndexUsed + i) % usedCardsCount; // Lấy chỉ số lá bài (tuần hoàn)
+   	        Image imageOn = new Image(player.getCardsUsed().getCard(cardIndex).CardToLink()); // Đường dẫn ảnh "Bật"
+   	        Image imageOff = new Image(player.getCardsUsed().getCard(cardIndex).CardToLink()); // Đường dẫn ảnh "Tắt"
 
-    	        // Tạo ImageView cho hai trạng thái
-    	        ImageView imageViewOn = new ImageView(imageOn);
-    	        ImageView imageViewOff = new ImageView(imageOff);
-    	        ToggleButton cardButton = new ToggleButton();
-    	        cardButton.setTranslateX(i * 0);
-    	        cardButton.setSelected(usedCardsStates.get(cardIndex));
-    	        cardButton.setGraphic(imageViewOff);
-                /*
-    	        int index = cardIndex; // Lưu chỉ số thực tế
-    	        cardButton.setOnAction(e -> {
-    	            usedCardsStates.set(index, cardButton.isSelected());
-    	            System.out.println(usedCardsStates);
-    	        });
-                */
-    	        usedCardsBox.getChildren().add(cardButton);
-    	    }
+   	        // Tạo ImageView cho hai trạng thái
+   	        ImageView imageViewOn = new ImageView(imageOn);
+   	        ImageView imageViewOff = new ImageView(imageOff);
+   	        ToggleButton cardButton = new ToggleButton();
+   	        cardButton.setTranslateX(i * 0);
+   	        cardButton.setSelected(usedCardsStates.get(cardIndex));
+   	        cardButton.setGraphic(imageViewOff);
+               /*
+   	        int index = cardIndex; // Lưu chỉ số thực tế
+   	        cardButton.setOnAction(e -> {
+   	            usedCardsStates.set(index, cardButton.isSelected());
+   	            System.out.println(usedCardsStates);
+   	        });
+               */
+   	        usedCardsBox.getChildren().add(cardButton);
+   	    }
 
-    	    usedCardsBox.getStylesheets().add(getClass().getResource("style.css").toExternalForm());
+   	    usedCardsBox.getStylesheets().add(getClass().getResource("style.css").toExternalForm());
+   	    usedCardsBox.getStyleClass().add("speacial-card-box");
+   }
+    private void updateSpeacialCards() {
+        speacialCardBox.getChildren().clear();
+        Card specialCard = player.getDeck().getCardSet().getCard(0);
+        Image specialCardImage = new Image(specialCard.CardToLink());
+        ImageView imageViewFront = new ImageView(specialCardImage);
+        ToggleButton cardButton1 = new ToggleButton();
+        cardButton1.setGraphic(imageViewFront);
+        speacialCardBox.getChildren().add(cardButton1);
+        
+        Image backCard = new Image("file:src/image/card/b.gif");
+        ImageView imageViewBack = new ImageView(backCard);
+        ToggleButton cardButton2 = new ToggleButton();
+        cardButton2.setGraphic(imageViewBack);
+        speacialCardBox.getChildren().add(cardButton2);
+        speacialCardBox.getStylesheets().add(getClass().getResource("style.css").toExternalForm());
+        speacialCardBox.getStyleClass().add("speacial-card-box");
     }
-
     // Các hàm dịch bài
     @FXML
     private void shiftHandLeft(ActionEvent e) {
@@ -277,6 +316,8 @@ public class CardGameController {
         startIndexUsed = (startIndexUsed + 1) % usedCardsCount;
         updateUsedCards();
     }
-    
 
+    private void updateRemainingCardLabel() {
+    	remainingCardLabel.setText("" + player.getDeck().getCardSet().size());
+    }
 }

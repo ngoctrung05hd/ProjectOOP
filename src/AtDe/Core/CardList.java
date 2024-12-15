@@ -1,4 +1,4 @@
-package AtDe;
+package AtDe.Core;
 
 import java.util.ArrayList;
 

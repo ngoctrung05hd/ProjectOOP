@@ -5,13 +5,28 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="b25fc1da-e2ce-4f8a-803f-5a2c49cb41ea" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/src/AtDe/MainHelper.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/AtDe/MultiThreadedJavaFXApp.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/AtDe/UserInterface/CardGameLayout.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/AtDe/BotEasy.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/AtDe/BotEasy.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/AtDe/CardGameController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/AtDe/CardGameController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/AtDe/Deck.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/AtDe/Deck.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/AtDe/BotEasy.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/AtDe/Member/BotEasy.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/AtDe/Card.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/AtDe/Core/Card.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/AtDe/CardGameController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/AtDe/UserInterface/CardGameController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/AtDe/CardGameGUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/AtDe/UserInterface/CardGameGUI.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/AtDe/CardGameLayout.fxml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/AtDe/CardList.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/AtDe/Core/CardList.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/AtDe/CardSet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/AtDe/Components/CardSet.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/AtDe/CardsUsed.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/AtDe/Components/CardsUsed.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/AtDe/Casino.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/AtDe/Casino.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/AtDe/Deck.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/AtDe/Components/Deck.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/AtDe/GamePlay.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/AtDe/GamePlay.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/AtDe/Member.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/AtDe/Member.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/AtDe/Player.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/AtDe/Player.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/AtDe/Hand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/AtDe/Components/Hand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/AtDe/Member.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/AtDe/Member/Member.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/AtDe/NeedToDefend.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/AtDe/Components/NeedToDefend.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/AtDe/Player.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/AtDe/Member/Player.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/AtDe/gameMenu.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/AtDe/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/AtDe/UserInterface/style.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Base/CardList.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Base/CardList.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -52,8 +67,10 @@
   </component>
   <component name="PropertiesComponent">{
   &quot;keyToString&quot;: {
+    &quot;Application.BotAndGUIExample.executor&quot;: &quot;Run&quot;,
     &quot;Application.CardGameGUI.executor&quot;: &quot;Run&quot;,
     &quot;Application.Main.executor&quot;: &quot;Run&quot;,
+    &quot;Application.MultiThreadedJavaFXApp.executor&quot;: &quot;Run&quot;,
     &quot;Application.Test.executor&quot;: &quot;Run&quot;,
     &quot;Application.gameMenu.executor&quot;: &quot;Run&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
@@ -74,14 +91,14 @@
 }</component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="D:\ProjectOOP\src\AtDe\UserInterface" />
       <recent name="D:\ProjectOOP\src\AtDe" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.Test">
-    <configuration name="CardGameGUI" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="AtDe.CardGameGUI" />
+  <component name="RunManager" selected="Application.MultiThreadedJavaFXApp">
+    <configuration name="BotAndGUIExample" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="AtDe.BotAndGUIExample" />
       <module name="ProjectOOP" />
-      <option name="VM_PARAMETERS" value="--module-path &quot;C:\Program Files\Java\javafx-sdk-23.0.1\lib&quot; --add-modules javafx.controls,javafx.fxml " />
       <extension name="coverage">
         <pattern>
           <option name="PATTERN" value="AtDe.*" />
@@ -98,6 +115,19 @@
       <option name="VM_PARAMETERS" value="--module-path &quot;C:\Program Files\Java\javafx-sdk-23.0.1\lib&quot; --add-modules javafx.controls,javafx.fxml " />
       <extension name="coverage">
         <pattern>
+          <option name="PATTERN" value="AtDe.Core.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="MultiThreadedJavaFXApp" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="AtDe.MultiThreadedJavaFXApp" />
+      <module name="ProjectOOP" />
+      <extension name="coverage">
+        <pattern>
           <option name="PATTERN" value="AtDe.*" />
           <option name="ENABLED" value="true" />
         </pattern>
@@ -111,7 +141,7 @@
       <module name="ProjectOOP" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="AtDe.*" />
+          <option name="PATTERN" value="AtDe.Core.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -125,7 +155,7 @@
       <option name="VM_PARAMETERS" value="--module-path &quot;C:\Program Files\Java\javafx-sdk-23.0.1\lib&quot; --add-modules javafx.controls,javafx.fxml " />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="AtDe.*" />
+          <option name="PATTERN" value="AtDe.Core.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -134,17 +164,19 @@
       </method>
     </configuration>
     <list>
-      <item itemvalue="Application.CardGameGUI" />
+      <item itemvalue="Application.BotAndGUIExample" />
+      <item itemvalue="Application.MultiThreadedJavaFXApp" />
       <item itemvalue="Application.Main" />
       <item itemvalue="Application.Test" />
       <item itemvalue="Application.gameMenu" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.MultiThreadedJavaFXApp" />
+        <item itemvalue="Application.BotAndGUIExample" />
         <item itemvalue="Application.Test" />
-        <item itemvalue="Application.CardGameGUI" />
-        <item itemvalue="Application.Main" />
         <item itemvalue="Application.gameMenu" />
+        <item itemvalue="Application.Main" />
       </list>
     </recent_temporary>
   </component>
@@ -174,7 +206,8 @@
       <workItem from="1733883222719" duration="369000" />
       <workItem from="1733924680867" duration="3032000" />
       <workItem from="1733974076100" duration="6938000" />
-      <workItem from="1734143736171" duration="8594000" />
+      <workItem from="1734143736171" duration="28740000" />
+      <workItem from="1734197429394" duration="514000" />
     </task>
     <servers />
   </component>

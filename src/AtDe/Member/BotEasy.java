@@ -1,29 +1,44 @@
-package AtDe;
+package AtDe.Member;
+
+import AtDe.Components.Hand;
+import AtDe.Components.NeedToDefend;
+import AtDe.Core.Card;
+import AtDe.Core.CardList;
+import AtDe.Components.Deck;
 
 public class BotEasy implements Member, Base.Bot {
     private Hand hand;
     private String role;
     private boolean success;
-    private int deckId;
     private Deck deck;
+    private boolean endTurn;
+    private String name;
 
-    BotEasy (int deckId) {
+    public BotEasy() {
         this.hand = new Hand();
         this.role = "";
         this.success = false;
-        this.deckId = deckId;
         this.deck = null;
     }
 
     @Override
-    public void getMove(boolean firstMove) {
+    public void getMove() {
+        try {
+            Thread.sleep(2000); // Dừng 2 giây
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
         hand.sort();
+        setEndTurn(false);
         if (getRole().equals("attack")) {
+        	boolean firstMove = (deck.getCardsUsed().size() == 0);
             attack(firstMove);
         }
         else {
             defend();
         }
+        deck.endTurn();
     }
 
     public void collect(Card card) {
@@ -34,6 +49,7 @@ public class BotEasy implements Member, Base.Bot {
         CardList attackCards = new CardList();
         if (firstMove)
         {
+        	System.out.println("hehehe");
             for (int i = 0; i < hand.size(); ++i)
                 if(hand.getFirstCard().getRank() == hand.getCard(i).getRank()) {
                     attackCards.add(hand.getCard(i));
@@ -44,12 +60,18 @@ public class BotEasy implements Member, Base.Bot {
             }
         }
         else {
+            boolean end = true;
             for (int i = 0; i < hand.size(); ++i){
                     if (deck.checkAttack(hand.getCard(i))) {
                         attackCards.add(hand.getCard(i));
+                        end = false;
                         hand.remove(i);
                     }
                 }
+
+            if (deck.getNeedToDefend().size() == 0 && deck.getCardsUsed().size() > 0) {
+                setEndTurn(end);
+            }
         }
         deck.attack(attackCards);
     }
@@ -63,6 +85,7 @@ public class BotEasy implements Member, Base.Bot {
                     deck.defend(needToDefend.getCard(j), hand.getCard(i));
                     hand.remove(i);
                     setSuccess(true);
+                    return;
                 }
             }
         }
@@ -88,19 +111,27 @@ public class BotEasy implements Member, Base.Bot {
         return success;
     }
 
-    public void setDeckId(int deckId) {
-        this.deckId = deckId;
-    }
-
     public Hand getHand() {
         return hand;
     }
 
-    public int getDeckId() {
-        return deckId;
+    public boolean isEndTurn() {
+        return endTurn;
+    }
+
+    public void setEndTurn(boolean endTurn) {
+        this.endTurn = endTurn;
     }
 
     public void setDeck(Deck deck) {
         this.deck = deck;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 }

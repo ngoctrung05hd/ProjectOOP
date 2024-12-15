@@ -12,8 +12,8 @@ public class CardList <T extends Card> {
 
     public void sort() {
         cards.sort((c1, c2) -> {
-            if (c1 instanceof AtDe.Card && c2 instanceof AtDe.Card) {
-                return ((AtDe.Card) c1).compareTo((AtDe.Card) c2);
+            if (c1 instanceof AtDe.Core.Card && c2 instanceof AtDe.Core.Card) {
+                return ((AtDe.Core.Card) c1).compareTo((AtDe.Core.Card) c2);
             }
             else {
                 return 0;

@@ -1,4 +1,7 @@
-package AtDe;
+package AtDe.Components;
+
+import AtDe.Core.Card;
+import AtDe.Core.CardList;
 
 public class NeedToDefend extends CardList {
     public NeedToDefend() {

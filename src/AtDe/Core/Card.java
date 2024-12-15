@@ -1,4 +1,4 @@
-package AtDe;
+package AtDe.Core;
 
 import java.util.Objects;
 
@@ -7,7 +7,7 @@ public class Card extends Base.Card implements Comparable<Card> {
 
     private int specialSuit;
 
-    Card(int rank, int suit) {
+    public Card(int rank, int suit) {
         super(rank, suit);
         specialSuit = -1;
     }
@@ -43,9 +43,6 @@ public class Card extends Base.Card implements Comparable<Card> {
         Card card = (Card) obj;
         return this.getRank() == card.getRank() && this.getSuit() == card.getSuit();
     }
-
-
-
 
     @Override
     public int hashCode() {

@@ -9,5 +9,10 @@
     -fx-alignment: center; /* Căn chỉnh giữa */
     -fx-padding: 0; /* Padding bằng 0 */
 }
+.speacial-card-box {
+    -fx-spacing: -70; /* Khoảng cách âm giữa các phần tử */
+    -fx-alignment: center; /* Căn chỉnh giữa */
+    -fx-padding: 0; /* Padding bằng 0 */
+}
 
 
