@@ -4,7 +4,7 @@ import AtDe.Components.Hand;
 import AtDe.Components.NeedToDefend;
 import AtDe.Core.Card;
 import AtDe.Core.CardList;
-import AtDe.Components.Deck;
+import AtDe.GameLogic.Deck;
 
 public class BotEasy implements Member, Base.Bot {
     private Hand hand;
@@ -13,7 +13,8 @@ public class BotEasy implements Member, Base.Bot {
     private Deck deck;
     private boolean endTurn;
     private String name;
-
+    private int id;
+    
     public BotEasy() {
         this.hand = new Hand();
         this.role = "";
@@ -43,6 +44,10 @@ public class BotEasy implements Member, Base.Bot {
 
     public void collect(Card card) {
         hand.add(card);
+    }
+
+    public void collect(CardList cardList) {
+        hand.add(cardList);
     }
 
     public void attack(boolean firstMove) {
@@ -133,5 +138,13 @@ public class BotEasy implements Member, Base.Bot {
 
     public void setName(String name) {
         this.name = name;
+    }
+    
+    public void setId(int id) {
+    	this.id = id;
+    }
+    
+    public int getId() {
+    	return this.id;
     }
 }

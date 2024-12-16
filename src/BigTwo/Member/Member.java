@@ -1,14 +1,13 @@
-package AtDe.Member;
+package BigTwo.Member;
 
-import AtDe.Components.Hand;
-import AtDe.Core.Card;
-import AtDe.Core.CardList;
-import AtDe.GameLogic.Deck;
+import BigTwo.Components.Hand;
+import BigTwo.Core.Card;
+import BigTwo.Core.CardList;
+import BigTwo.GameLogic.Deck;
 
 public interface Member extends Base.Member {
     void collect(Card card);
     void collect(CardList cardList);
     Hand getHand();
     void setDeck(Deck deck);
-    boolean getSuccess();
 }

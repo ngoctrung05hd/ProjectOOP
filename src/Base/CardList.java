@@ -15,6 +15,9 @@ public class CardList <T extends Card> {
             if (c1 instanceof AtDe.Core.Card && c2 instanceof AtDe.Core.Card) {
                 return ((AtDe.Core.Card) c1).compareTo((AtDe.Core.Card) c2);
             }
+            if (c1 instanceof BigTwo.Core.Card && c2 instanceof BigTwo.Core.Card) {
+                return ((BigTwo.Core.Card) c1).compareTo((BigTwo.Core.Card) c2);
+            }
             else {
                 return 0;
             }

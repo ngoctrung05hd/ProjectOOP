@@ -1,16 +1,13 @@
-package AtDe.Member;
+package BigTwo.Member;
 
-import AtDe.Components.CardsUsed;
-import AtDe.Components.Hand;
-import AtDe.Components.NeedToDefend;
-import AtDe.Core.Card;
-import AtDe.Core.CardList;
-import AtDe.GameLogic.Deck;
+import BigTwo.Components.Hand;
+import BigTwo.Core.Card;
+import BigTwo.Core.CardList;
+import BigTwo.GameLogic.Deck;
 
 public class Player implements Member{
     private Hand hand;
     private String role;
-    private boolean success;
     private boolean firstMove = false;
     private Deck deck;
     private boolean endTurn;
@@ -20,7 +17,6 @@ public class Player implements Member{
     public Player() {
         this.hand = new Hand();
         this.role = "";
-        this.success = false;
         deck = null;
     }
 
@@ -33,25 +29,16 @@ public class Player implements Member{
     }
 
     public void getMove() {
-    	boolean firstMove = (deck.getNeedToDefend().size() == 0);
-    	setSuccess(false);
+    	boolean firstMove = (deck.getLastCardList().size() == 0);
         setFirstMove(firstMove);
     }
 
-    public void attack(CardList attackCards) {
-    	System.out.println("Attack: " + hand.CardListToString());
-        setFirstMove(false);
+    public void attack(CardList cardList) {
+        setFirstMove(false);        
+        for (int i = 0; i < cardList.size(); ++i)
+            hand.remove(cardList.getCard(i));
         
-        for (int i = 0; i < attackCards.size(); ++i)
-            hand.remove(attackCards.getCard(i));
-        deck.attack(attackCards);
-    }
-
-    public void defend(Card needToDefend, Card card) {
-    	System.out.println("Defend: " + hand.CardListToString());
-        hand.remove(card);    	
-    	deck.defend(needToDefend, card);
-        setSuccess(true);
+        deck.move(cardList);
     }
 
     public void clearHand() {
@@ -67,24 +54,8 @@ public class Player implements Member{
         return role;
     }
 
-    private void setSuccess(boolean success) {
-        this.success = success;
-    }
-
-    public boolean getSuccess() {
-        return success;
-    }
-
     public Hand getHand() {
         return hand;
-    }
-
-    public NeedToDefend getNeedToDefend() {
-        return deck.getNeedToDefend();
-    }
-
-    public CardsUsed getCardsUsed() {
-        return deck.getCardsUsed();
     }
 
     public boolean isFirstMove() {
@@ -110,14 +81,6 @@ public class Player implements Member{
     public void setEndTurn(boolean endTurn) {
         this.endTurn = endTurn;
     }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
     
     public void setId(int id) {
     	this.id = id;
@@ -127,7 +90,11 @@ public class Player implements Member{
     	return this.id;
     }
 
-    public boolean isSuccess() {
-        return success;
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 }

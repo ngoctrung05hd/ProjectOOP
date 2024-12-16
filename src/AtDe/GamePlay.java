@@ -1,7 +1,7 @@
 package AtDe;
 
 import AtDe.Components.CardSet;
-import AtDe.Components.Deck;
+import AtDe.GameLogic.Deck;
 import AtDe.Member.BotEasy;
 import AtDe.Member.Member;
 import AtDe.Member.Player;

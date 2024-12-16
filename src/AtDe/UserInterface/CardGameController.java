@@ -39,14 +39,28 @@ public class CardGameController {
     @FXML
     private HBox speacialCardBox;
     @FXML
+    private HBox opponentCard1;
+    @FXML
+    private HBox opponentCard2;
+    @FXML
+    private HBox opponentCard3;
+    @FXML
     private Button prevNeedToDefendButton, nextNeedToDefendButton, prevUsedButton, nextUsedButton;
     @FXML
     private Button prevButton, nextButton, endTurnButton, playButton;
 
     @FXML
     private Label remainingCardLabel;
+    @FXML
+    private Label cardNums1;
+    @FXML
+    private Label cardNums2;
+    @FXML
+    private Label cardNums3;
 
     public List<Player> players;
+    
+    public ArrayList <Player> playersList;
 
     public Player player;
 
@@ -66,12 +80,25 @@ public class CardGameController {
         updateNeedToDefendCards();
         updateUsedCards();
         updateRemainingCardLabel();
+        updateOpponentCard(opponentCard1);
+        updateOpponentCard(opponentCard2);
+        updateOpponentCard(opponentCard3);
+        updateOpponentNumsCard();
     }
 
     public void setPlayer(Player player) {
         this.player = player;
         display();
     }
+    
+
+
+    public void addPlayersList(ArrayList <Player> playersList) {
+    	playersList = new ArrayList<>();
+    	for (Player p : playersList)
+    		this.playersList.add(p);
+    }
+    
 
     private void update() {
     	updateHand();
@@ -319,5 +346,46 @@ public class CardGameController {
 
     private void updateRemainingCardLabel() {
     	remainingCardLabel.setText("" + player.getDeck().getCardSet().size());
+    	remainingCardLabel.getStylesheets().add(getClass().getResource("style.css").toExternalForm());
+    	remainingCardLabel.getStyleClass().add("text-bordered");
+    }
+    private void updateOpponentCard(HBox hbox) {
+    	hbox.getChildren().clear();
+    	Image backCard = new Image("file:src/image/card/b.gif");
+        ImageView imageViewBack = new ImageView(backCard);
+        ToggleButton cardButton = new ToggleButton();
+        cardButton.setGraphic(imageViewBack);
+        hbox.getChildren().add(cardButton);
+        
+    }
+    // update số lá bài đối thủ
+    private void updateOpponentNumsCard() {
+    	int index = player.getId();
+    	int count = player.getDeck().getMembers().size();
+    	
+        cardNums1.setText("0");
+        if (count >= 4) {
+        	cardNums1.setText("" + player.getDeck().getMember((index + 3) % count).getHand().size());
+        }
+        cardNums1.getStylesheets().add(getClass().getResource("style.css").toExternalForm());
+    	cardNums1.getStyleClass().add("text-bordered");
+
+    	
+        cardNums2.setText("0");
+        if (count >= 3) {
+        	cardNums2.setText("" + player.getDeck().getMember((index + 2) % count).getHand().size());
+        }
+        cardNums2.getStylesheets().add(getClass().getResource("style.css").toExternalForm());
+    	cardNums2.getStyleClass().add("text-bordered");
+
+    	
+        cardNums3.setText("0");
+        if (count >= 2) {
+        	System.out.println(player.getHand().CardListToString());
+        	System.out.println(player.getDeck().getMember((index + 1) % count).getHand().CardListToString());
+        	cardNums3.setText("" + player.getDeck().getMember((index + 1) % count).getHand().size());
+        }
+        cardNums3.getStylesheets().add(getClass().getResource("style.css").toExternalForm());
+    	cardNums3.getStyleClass().add("text-bordered");
     }
 }

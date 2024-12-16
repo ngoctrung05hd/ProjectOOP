@@ -1,6 +1,5 @@
 package AtDe.UserInterface;
 
-import AtDe.Components.Deck;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -8,6 +7,8 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+
+import AtDe.GameLogic.Deck;
 
 public class CardGameGUI extends Application {
     static CardGameController controller;
@@ -25,7 +26,8 @@ public class CardGameGUI extends Application {
         // Lấy Controller và truyền dữ liệu player
         controller = loader.getController();
         deck.setController(controller);
-        controller.setPlayer(deck.getMember(deck.getStartMemberId()));
+        controller.addPlayersList(deck.getPlayersList());
+        controller.setPlayer(deck.getPlayer(deck.getStartMemberId()));
 
         // Tạo scene
         Scene scene = new Scene(root);

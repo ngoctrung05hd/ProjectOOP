@@ -2,10 +2,10 @@
 
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.MenuButton?>
-<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.effect.Glow?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
+<?import javafx.scene.text.Font?>
 
 <AnchorPane prefHeight="556.0" prefWidth="733.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="AtDe.UserInterface.CardGameController">
    <children>
@@ -27,7 +27,7 @@
       </HBox>
 
       <!-- Left Box for Cards to Defend -->
-      <HBox prefHeight="126.0" alignment="CENTER" spacing="10.0" AnchorPane.leftAnchor="25.0" AnchorPane.topAnchor="200.0">
+      <HBox alignment="CENTER" prefHeight="126.0" spacing="10.0" AnchorPane.leftAnchor="25.0" AnchorPane.topAnchor="200.0">
          <children>
             <Button fx:id="prevNeedToDefendButton" onAction="#shiftNeedToDefendCardsLeft" prefHeight="25.0" prefWidth="31.0" text="&lt;" />
             <HBox fx:id="needToDefendCardsBox" prefHeight="25.0" prefWidth="100.0" />
@@ -36,15 +36,49 @@
       </HBox>
 
       <!-- Right Box for Used Cards -->
-      <HBox prefHeight="126.0" alignment="CENTER" spacing="10.0" AnchorPane.rightAnchor="175.0" AnchorPane.topAnchor="200.0">
+      <HBox alignment="CENTER" prefHeight="126.0" spacing="10.0" AnchorPane.rightAnchor="175.0" AnchorPane.topAnchor="200.0">
          <children>
-            <Button fx:id="prevUsedButton" onAction="#shiftNeedToDefendCardsLeft" prefHeight="25.0" prefWidth="31.0" text="&lt;" />
+            <Button fx:id="prevUsedButton" onAction="#shiftUsedCardsLeft" prefHeight="25.0" prefWidth="31.0" text="&lt;" />
             <HBox fx:id="usedCardsBox" prefHeight="25.0" prefWidth="100.0" />
-            <Button fx:id="nextUsedButton" onAction="#shiftNeedToDefendCardsRight" prefHeight="25.0" prefWidth="31.0" text="&gt;" />
+            <Button fx:id="nextUsedButton" onAction="#shiftUsedCardsRight" prefHeight="25.0" prefWidth="31.0" text="&gt;" />
          </children>
       </HBox>
 
-      <HBox fx:id="speacialCardBox" alignment="CENTER" layoutX="641.0" layoutY="190.0" prefHeight="126.0" prefWidth="55.0" spacing="10.0" stylesheets="@style.css" AnchorPane.rightAnchor="25.0" AnchorPane.topAnchor="200.0" />
-      <Label fx:id="remainingCardLabel" layoutX="683.0" layoutY="182.0" text="52" textFill="#fd0f0f" AnchorPane.rightAnchor="25.0" AnchorPane.topAnchor="190.0" />
+      <HBox fx:id="speacialCardBox" alignment="CENTER" layoutX="641.0" layoutY="190.0" prefHeight="126.0" prefWidth="55.0" spacing="10.0" stylesheets="@style.css" AnchorPane.rightAnchor="33.0" AnchorPane.topAnchor="200.0" />
+      <Label fx:id="remainingCardLabel" layoutX="683.0" layoutY="182.0" text="52" textFill="#0ffcf5" translateX="-28.0" AnchorPane.rightAnchor="40.0" AnchorPane.topAnchor="249.0">
+         <font>
+            <Font name="Arial Bold" size="20.0" />
+         </font>
+         <effect>
+            <Glow />
+         </effect>
+      </Label>
+      <HBox fx:id="opponentCard1" alignment="CENTER" layoutX="89.0" layoutY="57.0" prefHeight="126.0" prefWidth="55.0" spacing="10.0" stylesheets="@style.css" AnchorPane.leftAnchor="89.0" AnchorPane.topAnchor="57.0" />
+      <Label fx:id="cardNums1" layoutX="66.0" layoutY="108.0" text="52" textFill="#0ffcf5" AnchorPane.leftAnchor="127.0" AnchorPane.topAnchor="108.0">
+         <font>
+            <Font name="Arial Bold" size="20.0" />
+         </font>
+         <effect>
+            <Glow />
+         </effect>
+      </Label>
+      <HBox fx:id="opponentCard2" alignment="CENTER" layoutX="301.0" layoutY="57.0" prefHeight="126.0" prefWidth="55.0" spacing="10.0" stylesheets="@style.css" />
+      <Label fx:id="cardNums2" text="52" textFill="#0ffcf5" AnchorPane.leftAnchor="338.0" AnchorPane.topAnchor="108.0">
+         <font>
+            <Font name="Arial Bold" size="20.0" />
+         </font>
+         <effect>
+            <Glow />
+         </effect>
+      </Label>
+      <HBox fx:id="opponentCard3" alignment="CENTER" layoutX="502.0" layoutY="57.0" prefHeight="126.0" prefWidth="55.0" spacing="10.0" stylesheets="@style.css" />
+      <Label fx:id="cardNums3" text="52" textFill="#0ffcf5" AnchorPane.leftAnchor="540.0" AnchorPane.topAnchor="108.0">
+         <font>
+            <Font name="Arial Bold" size="20.0" />
+         </font>
+         <effect>
+            <Glow />
+         </effect>
+      </Label>
    </children>
 </AnchorPane>
