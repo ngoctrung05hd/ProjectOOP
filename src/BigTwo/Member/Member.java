@@ -10,4 +10,5 @@ public interface Member extends Base.Member {
     void collect(CardList cardList);
     Hand getHand();
     void setDeck(Deck deck);
+    boolean getSuccess();
 }

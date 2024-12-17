@@ -1,24 +1,25 @@
 package BigTwo.GameLogic;
 
-import BigTwo.Core.CardList;
+import BigTwo.Components.*;
+import BigTwo.Core.*;
+//import BigTwo.Member.BotEasy;
+import BigTwo.Member.*;
+import BigTwo.UserInterface.CardGameController;
 
 import java.util.ArrayList;
 
-import BigTwo.Components.CardSet;
-import BigTwo.Components.LastCardList;
-import BigTwo.Member.Member;
-
-public class Deck {
+public class Deck implements Base.Deck{
     private CardSet cardSet;
-	private LastCardList lastCardList;
+    private LastCardList lastCardList;
     private ArrayList<Member> members;
     private int currentMemberId;
     private int	startMemberId;
     private int endTurnCount = 0;
-    //private CardGameController controller;
+    private CardGameController controller;
 
     public Deck() {
         cardSet = new CardSet();
+        lastCardList = new LastCardList();
         members = new ArrayList<>();
         endTurnCount = 0;
     }
@@ -39,13 +40,129 @@ public class Deck {
     		}
     	}
     }
+
+    public boolean checkMove(CardList cardList) {
+    	if (lastCardList.size() == 0) {
+    		return (cardList.isValid());
+    	}
+    	if (cardList.getCardType() == lastCardList.getCardType() && 
+    		cardList.size() == lastCardList.size() &&
+   			cardList.getLastCard().compareTo(lastCardList.getLastCard()) > 0) {
+    		return true;
+    	}
+        return false;
+    }
+
+    public void move(CardList cardList) {
+    	startMemberId = currentMemberId;
+        lastCardList.update(cardList);
+        controller.display();
+        
+        endGame();
+    }
     
-	public void move(CardList cardList) {
-		lastCardList.update(cardList);
-	}
+    public void endTurn() {
+		currentMemberId = (currentMemberId + 1) % members.size();
+    }
     
-	public LastCardList getLastCardList() {
-		return lastCardList;
-	}
-	
+    private void endGame() {
+    	if (members.get(currentMemberId).getHand().size() == 0) {
+    		System.out.println("Player " + members.get(currentMemberId) + " chien thang\n");
+    		controller.display();
+    	}
+    }
+    
+    private void afterRound() {
+    	clearDeck();
+		try {
+            Thread.sleep(2000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+		controller.display();
+    }
+    
+    private void clearDeck() {
+    	lastCardList.removeAll();
+    	reset();
+		controller.display();
+    }
+    
+    public void newRound() {
+    	currentMemberId = startMemberId;
+    	
+    	if (controller != null)
+    		controller.display();
+    	
+    	members.get(startMemberId).getMove();
+    }
+    
+    public void newGame() {
+    	reset();
+    	drawCard();
+    	setStartMemberId(0);
+    	newRound();
+    }
+
+    public LastCardList getLastCardList() {
+        return lastCardList;
+    }
+
+    public CardSet getCardSet() {
+        return cardSet;
+    }
+
+    public int getEndTurnCount() {
+        return endTurnCount;
+    }
+    
+    public void setStartMemberId(int startMemberId) {
+    	this.startMemberId = startMemberId;
+    }
+    
+    public int getStartMemberId() {
+    	return startMemberId;
+    }
+
+    public void setEndTurnCount(int endTurnCount) {
+        this.endTurnCount = endTurnCount;
+    }
+
+    
+    public void setController(CardGameController controller) {
+        this.controller = controller;
+    }
+
+    public void addMember(Member member) {
+    	this.members.add(member);
+    	member.setDeck(this);
+    	member.setId(members.size() - 1);
+    }
+    
+    public ArrayList <Member> getMembers() {
+    	return members;
+    }
+    
+    public ArrayList <Player> getPlayersList() {
+    	ArrayList <Player> playersList = new ArrayList<>();
+    	for (Member mem : members) {
+    		if (mem instanceof Player) {
+    			playersList.add((Player) mem);
+    		}
+    	}
+    	return playersList;
+    }
+    
+    public Player getPlayer(int index) {
+    	while (members.get(index) instanceof BotEasy) {
+    		index = (index + 1) % members.size();
+    	}
+    	Player p = (Player) members.get(index);
+    	return p;
+    }
+    
+    public Member getMember(int index) { 
+    	Member p = members.get(index);
+    	return p;
+    }
 }

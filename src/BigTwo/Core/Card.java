@@ -14,11 +14,12 @@ public class Card extends Base.Card implements Comparable<Card> {
     }
 
     public int compareTo(Card card) {
-        if (this.POINT()[getRank()] > card.POINT()[getRank()]) {
+        if (POINT()[this.getRank()] > POINT()[card.getRank()]) {
             return 1;
-        } else if (this.POINT()[getRank()] > card.POINT()[getRank()]) {
+        } else if (POINT()[this.getRank()] < POINT()[card.getRank()]) {
             return -1;
-        } else return Integer.compare(this.getSuit(), card.getSuit());
+        }
+        else return Integer.compare(this.getSuit(), card.getSuit());
     }
 
     @Override

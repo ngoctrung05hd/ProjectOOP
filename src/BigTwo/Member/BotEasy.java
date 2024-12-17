@@ -1,11 +1,11 @@
 package BigTwo.Member;
 
-import BigTwo.Components.*;
+import BigTwo.Components.Hand;
 import BigTwo.Core.Card;
 import BigTwo.Core.CardList;
 import BigTwo.GameLogic.Deck;
 
-public class Player implements Member{
+public class BotEasy implements Member{
     private Hand hand;
     private String role;
     private boolean success;
@@ -15,7 +15,7 @@ public class Player implements Member{
     private String name;
     private int id;
 
-    public Player() {
+    public BotEasy() {
         this.hand = new Hand();
         this.role = "";
         deck = null;
@@ -30,25 +30,17 @@ public class Player implements Member{
     }
 
     public void getMove() {
-    	boolean firstMove = (deck.getLastCardList().size() == 0);
-        setFirstMove(firstMove);
-        
+
     }
 
-    public void move(CardList pickedCards) {
-        setFirstMove(false);        
-        for (int i = 0; i < pickedCards.size(); ++i)
-            hand.remove(pickedCards.getCard(i));
-        
-        deck.move(pickedCards);
+    public void attack(CardList cardList) {
+        for (int i = 0; i < cardList.size(); ++i)
+            hand.remove(cardList.getCard(i));
+        deck.move(cardList);
     }
 
     public void clearHand() {
         hand.removeAll();
-    }
-    
-    public LastCardList getLastCardList() {
-    	return deck.getLastCardList();
     }
 
 
