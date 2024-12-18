@@ -22,6 +22,9 @@ public class CardGameGUI extends Application {
         	System.out.println("GG");
         	return;
         }
+        root.getStylesheets().add(getClass().getResource("style.css").toExternalForm());
+        root.getStyleClass().add("root");
+
 
         // Lấy Controller và truyền dữ liệu player
         controller = loader.getController();

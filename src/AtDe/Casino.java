@@ -12,7 +12,7 @@ import java.util.ArrayList;
 public class Casino {
     public static ArrayList<Deck> decks;
 
-    Casino() {
+    public Casino() {
         decks = new ArrayList<>();
     }
 

@@ -68,9 +68,10 @@ public class BotEasy implements Member, Base.Bot {
             boolean end = true;
             for (int i = 0; i < hand.size(); ++i){
                     if (deck.checkAttack(hand.getCard(i))) {
-                        attackCards.add(hand.getCard(i));
-                        end = false;
+                    	Card pick = hand.getCard(i);
                         hand.remove(i);
+                        attackCards.add(pick);
+                        end = false;
                     }
                 }
 
@@ -87,8 +88,9 @@ public class BotEasy implements Member, Base.Bot {
         for (int i = 0; i < hand.size(); ++i) {
             for (int j = 0; j < needToDefend.size(); ++j) {
                 if (deck.checkDefend(needToDefend.getCard(j), hand.getCard(i))) {
-                    deck.defend(needToDefend.getCard(j), hand.getCard(i));
+                    Card pick = hand.getCard(i);
                     hand.remove(i);
+                    deck.defend(needToDefend.getCard(j), pick);
                     setSuccess(true);
                     return;
                 }

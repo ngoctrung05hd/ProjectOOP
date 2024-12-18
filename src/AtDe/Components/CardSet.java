@@ -26,14 +26,14 @@ public class CardSet extends CardList {
     public Card getBegin() {
         Card begin = null;
         if (this.size() > 0)
-            begin = (Card) cards.getFirst();
+            begin = cards.getFirst();
         return begin;
     }
 
     public Card getEnd() {
         Card back = null;
         if (this.size() > 0) {
-            back = (Card) cards.getLast();
+            back = cards.getLast();
             cards.removeLast();
         }
         return back;

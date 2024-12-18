@@ -32,7 +32,7 @@ public class CardList <T extends Card> {
         cards.addAll(cardList.getAll());
     }
 
-    protected List<T> getAll() {
+    public List<T> getAll() {
         return cards;
     }
 

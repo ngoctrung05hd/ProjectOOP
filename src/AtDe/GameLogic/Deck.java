@@ -53,6 +53,7 @@ public class Deck implements Base.Deck{
     }
 
     public boolean checkAttack(CardList attackCards) {
+    	System.out.println(cardsUsed.CardListToString());
         for (int i = 0; i < attackCards.size(); ++i) {
             if (!checkAttack(attackCards.getCard(i)))
                 return false;
@@ -82,7 +83,6 @@ public class Deck implements Base.Deck{
         needToDefend.add(cardList);
         cardsUsed.add(cardList);
         controller.display();
-        
         endGame();
     }
 
@@ -90,7 +90,7 @@ public class Deck implements Base.Deck{
         needToDefend.remove(needToDefendCard);
         cardsUsed.add(card);
         controller.display();
-        
+
         endGame();
     }
     
@@ -103,6 +103,9 @@ public class Deck implements Base.Deck{
     		}
     		else {
     			currentMemberId = (currentMemberId + 1) % members.size();
+    			if (members.get(currentMemberId) instanceof Player) {
+    				controller.setPlayer((Player) members.get(currentMemberId));
+    			}
     			members.get(currentMemberId).getMove(); 
     		}
     	}
@@ -122,6 +125,9 @@ public class Deck implements Base.Deck{
     		}
     		else {
         		currentMemberId = (currentMemberId + 1) % members.size();
+    			if (members.get(currentMemberId) instanceof Player) {
+    				controller.setPlayer((Player) members.get(currentMemberId));
+    			}
             	members.get(currentMemberId).getMove(); 
     		}
     	}   	
@@ -182,8 +188,12 @@ public class Deck implements Base.Deck{
     		if (i == (startMemberId + 1) % members.size()) 
     			members.get(i).setRole("defend");
     	}
-    	if (controller != null)
+    	if (controller != null) {
+    		if (members.get(startMemberId) instanceof Player) {
+    			controller.setPlayer((Player) members.get(startMemberId));
+    		}
     		controller.display();
+    	}
     	members.get(startMemberId).getMove();
     }
     

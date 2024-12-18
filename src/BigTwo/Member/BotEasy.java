@@ -33,7 +33,6 @@ public class BotEasy implements Member{
     }
     
     public void getMove() {
-        
         setSuccess(false);
         boolean end = true;
         List<Card> list = getHand().getAll();

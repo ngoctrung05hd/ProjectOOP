@@ -13,6 +13,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.ToggleButton;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 
 public class CardGameController {
@@ -25,11 +26,14 @@ public class CardGameController {
     private int usedCardsCount = 8; // Tổng số lá bài "Đã sử dụng"
     private int startIndexHand = 0;             // Vị trí bắt đầu hiển thị lá bài trên tay (0-based)
     private int startIndexNeedToDefend = 0;           // Vị trí bắt đầu hiển thị lá bài "Cần đỡ"
-    private int startIndexUsed = 0;         // Vị trí bắt đầu hiển thị lá bài "Đã sử dụng"
+    private int startIndexUsed = 0;
+    private boolean graphicMode = true;
+    private ArrayList<String> playerName = new ArrayList<>();
 
     private CardList pickedCards = new CardList();
     private CardList defendCards = new CardList();
-
+    @FXML
+    private AnchorPane background;
     @FXML
     private HBox needToDefendCardsBox;
     @FXML
@@ -48,6 +52,8 @@ public class CardGameController {
     private Button prevNeedToDefendButton, nextNeedToDefendButton, prevUsedButton, nextUsedButton;
     @FXML
     private Button prevButton, nextButton, endTurnButton, playButton;
+    @FXML
+    private Button graphicButton;
 
     @FXML
     private Label remainingCardLabel;
@@ -57,6 +63,14 @@ public class CardGameController {
     private Label cardNums2;
     @FXML
     private Label cardNums3;
+    @FXML
+    private Label player1Name;
+    @FXML
+    private Label player2Name;
+    @FXML
+    private Label player3Name;
+    @FXML
+    private Label playRole;
 
     public List<Player> players;
     
@@ -75,7 +89,6 @@ public class CardGameController {
         playButton.setDisable(true); // Đặt mặc định là không thể đánh bài
         endTurnButton.setOnAction(e -> endTurn());
         playButton.setOnAction(e -> play());
-
         updateHand();
         updateNeedToDefendCards();
         updateUsedCards();
@@ -84,6 +97,7 @@ public class CardGameController {
         updateOpponentCard(opponentCard2);
         updateOpponentCard(opponentCard3);
         updateOpponentNumsCard();
+        updatePlayRole();
     }
 
     public void setPlayer(Player player) {
@@ -97,6 +111,10 @@ public class CardGameController {
     	playersList = new ArrayList<>();
     	for (Player p : playersList)
     		this.playersList.add(p);
+    }
+    public void setPlayerNames(ArrayList<String> playerNames) {
+        this.playerName = new ArrayList<>(playerNames); // Sao chép danh sách để đảm bảo tính toàn vẹn
+        System.out.println("Received player names: " + playerName);
     }
     
 
@@ -117,9 +135,6 @@ public class CardGameController {
         else {
             player.defend(defendCards.getFirstCard(), pickedCards.getFirstCard());
         }
-    }
-    private void draw() {
-    	System.out.println("Bốc bài");
     }
     private void resize() {
         setHandCount(player.getHand().size());
@@ -175,7 +190,16 @@ public class CardGameController {
     // Hàm cập nhật hiển thị các lá trên tay
     private void updateHand() {
         handBox.getChildren().clear();
-
+        handBox.getStylesheets().add(getClass().getResource("style.css").toExternalForm());
+        if (graphicMode) {
+        	handBox.getStyleClass().remove("hand-box-text");
+    		handBox.getStyleClass().add("hand-box");
+    		System.out.println("gay");
+            } else {
+            handBox.getStyleClass().add("hand-box");
+            handBox.getStyleClass().add("hand-box-text");
+            }
+        
         for (int i = 0; i < 8 && i < handCount; i++) {
             int cardIndex = (startIndexHand + i) % handCount; // Lấy chỉ số lá bài (tuần hoàn)
             Image imageOn = new Image(player.getHand().getCard(cardIndex).CardToLink()); // Đường dẫn ảnh "Bật"
@@ -187,8 +211,15 @@ public class CardGameController {
             ToggleButton cardButton = new ToggleButton();
             cardButton.setTranslateX(i * 0);
             cardButton.setSelected(handStates.get(cardIndex));
+            
+            if (graphicMode) {
             cardButton.setGraphic(imageViewOff);
-
+            } else {
+            cardButton.setText(player.getHand().getCard(cardIndex).CardToString());
+            handBox.getStylesheets().add(getClass().getResource("style.css").toExternalForm());
+            handBox.getStyleClass().add("toggle-button-text");
+            }
+            
             int index = cardIndex; // Lưu chỉ số thực tế
             if(handStates.get(index)) {
                 cardButton.setTranslateY(-20);
@@ -207,14 +238,24 @@ public class CardGameController {
                 }
             });
             handBox.getChildren().add(cardButton);
-        }
-
-        handBox.getStylesheets().add(getClass().getResource("style.css").toExternalForm());
+        }        
     }
 
     // Hàm cập nhật hiển thị các lá bài "Cần đỡ"
     private void updateNeedToDefendCards() {
     	needToDefendCardsBox.getChildren().clear();
+    	
+    	needToDefendCardsBox.getChildren().clear();
+    	needToDefendCardsBox.getStylesheets().add(getClass().getResource("style.css").toExternalForm());
+        if (graphicMode) {
+        	needToDefendCardsBox.getStyleClass().remove("hand-box-text");
+        	needToDefendCardsBox.getStyleClass().add("hand-box");
+    		System.out.println("gay");
+            } else {
+            needToDefendCardsBox.getStyleClass().add("hand-box");
+            needToDefendCardsBox.getStyleClass().add("hand-box-text");
+            }
+        
         for (int i = 0; i < visibleCards && i < needToDefendCardsCount; i++) {
             int cardIndex = (startIndexNeedToDefend + i) % needToDefendCardsCount; // Lấy chỉ số lá bài (tuần hoàn)
             Image imageOn = new Image(player.getNeedToDefend().getCard(cardIndex).CardToLink()); // Đường dẫn ảnh "Bật"
@@ -226,9 +267,14 @@ public class CardGameController {
             ToggleButton cardButton = new ToggleButton();
             cardButton.setTranslateX(i * 0);
             cardButton.setSelected(needToDefendCardsStates.get(cardIndex));
-            cardButton.setGraphic(imageViewOff);
-
-            int index = cardIndex; // Lưu chỉ số thực tế
+            if (graphicMode) {
+				cardButton.setGraphic(imageViewOff);
+			} else {
+				cardButton.setText(player.getHand().getCard(cardIndex).CardToString());
+				needToDefendCardsBox.getStylesheets().add(getClass().getResource("style.css").toExternalForm());
+				needToDefendCardsBox.getStyleClass().add("toggle-button-text");
+			}
+			int index = cardIndex; // Lưu chỉ số thực tế
             if(needToDefendCardsStates.get(index)) {
                 cardButton.setTranslateY(-20);
             } else {
@@ -253,7 +299,18 @@ public class CardGameController {
 
     // Hàm cập nhật hiển thị các lá bài "Đã sử dụng" (Không có tính năng chọn)
     private void updateUsedCards() {
-   	 usedCardsBox.getChildren().clear();
+    	usedCardsBox.getChildren().clear();
+   	 
+    	usedCardsBox.getChildren().clear();
+    	usedCardsBox.getStylesheets().add(getClass().getResource("style.css").toExternalForm());
+   	 	if (graphicMode) {
+   	 		usedCardsBox.getStyleClass().remove("hand-box-text");
+   	 		usedCardsBox.getStyleClass().add("hand-box");
+   	 		System.out.println("gay");
+   	 		} else {
+   	 			usedCardsBox.getStyleClass().add("hand-box");
+   	 			usedCardsBox.getStyleClass().add("hand-box-text");
+   	 		}
    	    for (int i = 0; i < visibleCards && i < usedCardsCount; i++) {
    	        int cardIndex = (startIndexUsed + i) % usedCardsCount; // Lấy chỉ số lá bài (tuần hoàn)
    	        Image imageOn = new Image(player.getCardsUsed().getCard(cardIndex).CardToLink()); // Đường dẫn ảnh "Bật"
@@ -265,15 +322,14 @@ public class CardGameController {
    	        ToggleButton cardButton = new ToggleButton();
    	        cardButton.setTranslateX(i * 0);
    	        cardButton.setSelected(usedCardsStates.get(cardIndex));
-   	        cardButton.setGraphic(imageViewOff);
-               /*
-   	        int index = cardIndex; // Lưu chỉ số thực tế
-   	        cardButton.setOnAction(e -> {
-   	            usedCardsStates.set(index, cardButton.isSelected());
-   	            System.out.println(usedCardsStates);
-   	        });
-               */
-   	        usedCardsBox.getChildren().add(cardButton);
+   	        if (graphicMode) {
+				cardButton.setGraphic(imageViewOff);
+			} else {
+				cardButton.setText(player.getHand().getCard(cardIndex).CardToString());
+				usedCardsBox.getStylesheets().add(getClass().getResource("style.css").toExternalForm());
+				usedCardsBox.getStyleClass().add("toggle-button-text");
+			}
+			usedCardsBox.getChildren().add(cardButton);
    	    }
 
    	    usedCardsBox.getStylesheets().add(getClass().getResource("style.css").toExternalForm());
@@ -281,12 +337,16 @@ public class CardGameController {
    }
     private void updateSpeacialCards() {
         speacialCardBox.getChildren().clear();
+        if (player.getDeck().getCardSet().size() == 0)
+        	return;
         Card specialCard = player.getDeck().getCardSet().getCard(0);
         Image specialCardImage = new Image(specialCard.CardToLink());
         ImageView imageViewFront = new ImageView(specialCardImage);
         ToggleButton cardButton1 = new ToggleButton();
         cardButton1.setGraphic(imageViewFront);
         speacialCardBox.getChildren().add(cardButton1);
+        if (player.getDeck().getCardSet().size() == 1)
+        	return;
         
         Image backCard = new Image("file:src/image/card/b.gif");
         ImageView imageViewBack = new ImageView(backCard);
@@ -343,8 +403,16 @@ public class CardGameController {
         startIndexUsed = (startIndexUsed + 1) % usedCardsCount;
         updateUsedCards();
     }
+    @FXML
+    private void switchGraphicMode() {
+    	graphicMode = !graphicMode;
+    	update();
+    }
 
     private void updateRemainingCardLabel() {
+    	remainingCardLabel.setText("");
+    	if (player.getDeck().getCardSet().size() <= 1)
+    		return;
     	remainingCardLabel.setText("" + player.getDeck().getCardSet().size());
     	remainingCardLabel.getStylesheets().add(getClass().getResource("style.css").toExternalForm());
     	remainingCardLabel.getStyleClass().add("text-bordered");
@@ -364,28 +432,43 @@ public class CardGameController {
     	int count = player.getDeck().getMembers().size();
     	
         cardNums1.setText("0");
+        player1Name.setText("");
         if (count >= 4) {
         	cardNums1.setText("" + player.getDeck().getMember((index + 3) % count).getHand().size());
+        	player1Name.setText(player.getDeck().getMember((index + 3) % count).getName());
         }
         cardNums1.getStylesheets().add(getClass().getResource("style.css").toExternalForm());
     	cardNums1.getStyleClass().add("text-bordered");
+    	player1Name.getStylesheets().add(getClass().getResource("style.css").toExternalForm());
+    	player1Name.getStyleClass().add("text-bordered");
 
     	
         cardNums2.setText("0");
+        player2Name.setText("");
         if (count >= 3) {
         	cardNums2.setText("" + player.getDeck().getMember((index + 2) % count).getHand().size());
+        	player2Name.setText(player.getDeck().getMember((index + 2) % count).getName());
         }
         cardNums2.getStylesheets().add(getClass().getResource("style.css").toExternalForm());
     	cardNums2.getStyleClass().add("text-bordered");
+    	player2Name.getStylesheets().add(getClass().getResource("style.css").toExternalForm());
+    	player2Name.getStyleClass().add("text-bordered");
 
     	
         cardNums3.setText("0");
-        if (count >= 2) {
-        	System.out.println(player.getHand().CardListToString());
-        	System.out.println(player.getDeck().getMember((index + 1) % count).getHand().CardListToString());
+        player3Name.setText("");
+        if (count >= 2) {        	
         	cardNums3.setText("" + player.getDeck().getMember((index + 1) % count).getHand().size());
+        	player3Name.setText(player.getDeck().getMember((index + 1) % count).getName());
         }
         cardNums3.getStylesheets().add(getClass().getResource("style.css").toExternalForm());
     	cardNums3.getStyleClass().add("text-bordered");
+    	player3Name.getStylesheets().add(getClass().getResource("style.css").toExternalForm());
+    	player3Name.getStyleClass().add("text-bordered");
+    }
+    private void updatePlayRole() {
+    	playRole.setText("this turn you are the " + player.getRole() + "er");
+    	playRole.getStylesheets().add(getClass().getResource("style.css").toExternalForm());
+    	playRole.getStyleClass().add("text-bordered");
     }
 }

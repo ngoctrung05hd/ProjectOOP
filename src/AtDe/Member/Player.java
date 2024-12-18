@@ -33,7 +33,7 @@ public class Player implements Member{
     }
 
     public void getMove() {
-    	boolean firstMove = (deck.getNeedToDefend().size() == 0);
+    	boolean firstMove = (deck.getCardsUsed().size() == 0);
     	setSuccess(false);
         setFirstMove(firstMove);
     }
@@ -42,8 +42,9 @@ public class Player implements Member{
     	System.out.println("Attack: " + hand.CardListToString());
         setFirstMove(false);
         
-        for (int i = 0; i < attackCards.size(); ++i)
+        for (int i = 0; i < attackCards.size(); ++i) {
             hand.remove(attackCards.getCard(i));
+        }
         deck.attack(attackCards);
     }
 
