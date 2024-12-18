@@ -15,6 +15,7 @@ public class Deck implements Base.Deck{
     private int currentMemberId;
     private int	startMemberId;
     private int endTurnCount = 0;
+    private int lastMemberId;
     private CardGameController controller;
 
     public Deck() {
@@ -55,14 +56,29 @@ public class Deck implements Base.Deck{
 
     public void move(CardList cardList) {
     	startMemberId = currentMemberId;
+    	lastMemberId = currentMemberId;
         lastCardList.update(cardList);
-        controller.display();
+
+        if (controller != null)
+        {
+        	System.out.println(cardList.CardListToString());
+        	controller.display();
+        }
         
         endGame();
+
+        endTurn();        
     }
     
     public void endTurn() {
 		currentMemberId = (currentMemberId + 1) % members.size();
+		if (currentMemberId == lastMemberId) {
+			newRound();
+		}
+		else 
+		{
+			members.get(currentMemberId).getMove();
+		}
     }
     
     private void endGame() {
@@ -90,6 +106,7 @@ public class Deck implements Base.Deck{
     
     public void newRound() {
     	currentMemberId = startMemberId;
+        lastCardList.removeAll();
     	
     	if (controller != null)
     		controller.display();
@@ -159,6 +176,10 @@ public class Deck implements Base.Deck{
     	}
     	Player p = (Player) members.get(index);
     	return p;
+    }
+    
+    public CardGameController getController() {
+    	return controller;
     }
     
     public Member getMember(int index) { 

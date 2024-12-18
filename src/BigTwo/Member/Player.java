@@ -30,13 +30,12 @@ public class Player implements Member{
     }
 
     public void getMove() {
-    	boolean firstMove = (deck.getLastCardList().size() == 0);
-        setFirstMove(firstMove);
+    	setSuccess(false);
         
     }
 
     public void move(CardList pickedCards) {
-        setFirstMove(false);        
+        setSuccess(true);        
         for (int i = 0; i < pickedCards.size(); ++i)
             hand.remove(pickedCards.getCard(i));
         

@@ -1,5 +1,8 @@
 package BigTwo.Member;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import BigTwo.Components.Hand;
 import BigTwo.Core.Card;
 import BigTwo.Core.CardList;
@@ -28,9 +31,53 @@ public class BotEasy implements Member{
     public void collect(CardList cardList) {
         hand.add(cardList);
     }
-
+    
     public void getMove() {
+        
+        setSuccess(false);
+        boolean end = true;
+        List<Card> list = getHand().getAll();
+       
+        int minCardsToPlay = (deck.getLastCardList().size() == 0) ? 1 : deck.getLastCardList().size();
+        int maxCardsToPlay = (deck.getLastCardList().size() == 0) ? hand.size() : deck.getLastCardList().size();
 
+        outer: for (int size = minCardsToPlay; size <= maxCardsToPlay; size++) {
+            List<List<Card>> combinations = getCombinations(list, size);
+            
+            for (List<Card> combination : combinations) {
+                CardList subHand = new CardList();
+            	for(Card card : combination) {
+                    subHand.add(card);
+            	}
+            	if(deck.checkMove(subHand)) {
+            		setSuccess(true);
+            		attack(subHand);
+            		break outer;
+            	}
+            }
+        }
+
+        if (!getSuccess())
+        	deck.endTurn();
+    }
+    
+    private List<List<Card>> getCombinations(List<Card> list, int k) {
+        List<List<Card>> result = new ArrayList<>();
+        combine(list, k, 0, new ArrayList<>(), result);
+        return result;
+    }
+
+    private void combine(List<Card> list, int k, int start, List<Card> current, List<List<Card>> result) {
+        if (current.size() == k) {
+            result.add(new ArrayList<>(current));
+            return;
+        }
+
+        for (int i = start; i < list.size(); i++) {
+            current.add(list.get(i));
+            combine(list, k, i + 1, current, result);
+            current.remove(current.size() - 1); // Backtrack
+        }
     }
 
     public void attack(CardList cardList) {
