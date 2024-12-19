@@ -1,4 +1,4 @@
-package Menu;
+package game;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -15,6 +15,9 @@ public class Menu extends Application{
         FXMLLoader loader = new FXMLLoader(getClass().getResource("Menu.fxml"));
         Parent root = loader.load();
 
+		root.getStylesheets().add(getClass().getResource("style.css").toExternalForm());
+		root.getStyleClass().add("root");
+		
         // Tạo scene
         Scene scene = new Scene(root);
         primaryStage.setScene(scene);

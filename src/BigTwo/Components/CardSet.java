@@ -1,9 +1,9 @@
-package BigTwo.Components;
-
-import BigTwo.Core.Card;
-import BigTwo.Core.CardList;
+package bigtwo.components;
 
 import java.util.Collections;
+
+import bigtwo.core.Card;
+import bigtwo.core.CardList;
 
 public class CardSet extends CardList {
     public CardSet() {

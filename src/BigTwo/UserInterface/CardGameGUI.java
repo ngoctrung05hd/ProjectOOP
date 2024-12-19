@@ -1,4 +1,4 @@
-package BigTwo.UserInterface;
+package bigtwo.userinterface;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -8,7 +8,7 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 
-import BigTwo.GameLogic.Deck;
+import bigtwo.gamelogic.Deck;
 
 public class CardGameGUI extends Application {
     static CardGameController controller;

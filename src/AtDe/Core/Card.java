@@ -1,8 +1,8 @@
-package AtDe.Core;
+package atde.core;
 
 import java.util.Objects;
 
-public class Card extends Base.Card implements Comparable<Card> {
+public class Card extends base.Card implements Comparable<Card> {
     private static final int[] POINT = {12, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11};
 
     private int specialSuit;

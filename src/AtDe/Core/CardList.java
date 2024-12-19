@@ -1,8 +1,8 @@
-package AtDe.Core;
+package atde.core;
 
 import java.util.ArrayList;
 
-public class CardList extends Base.CardList<Card> {
+public class CardList extends base.CardList<Card> {
     public CardList() {
         super();
     }

@@ -1,9 +1,8 @@
-package BigTwo.Member;
+package bigtwo.member;
 
-import BigTwo.Components.*;
-import BigTwo.Core.Card;
-import BigTwo.Core.CardList;
-import BigTwo.GameLogic.Deck;
+import bigtwo.components.*;
+import bigtwo.core.*;
+import bigtwo.gamelogic.Deck;
 
 public class Player implements Member{
     private Hand hand;

@@ -1,16 +1,16 @@
-package BigTwo;
+package bigtwo;
 
-import BigTwo.GameLogic.Deck;
-import BigTwo.Member.*;
-import BigTwo.UserInterface.CardGameGUI;
-import BigTwo.Core.*;
+import bigtwo.core.*;
+import bigtwo.gamelogic.Deck;
+import bigtwo.member.*;
+import bigtwo.userinterface.CardGameGUI;
 
 public class TestB {
 
 	static public void main(String args[]) {
     	Deck deck = new Deck();
     	Player player = new Player();
-    	BotEasy bot = new BotEasy();
+    	Player bot = new Player();
     	deck.addMember(player);
     	deck.addMember(bot);
     	deck.newGame();

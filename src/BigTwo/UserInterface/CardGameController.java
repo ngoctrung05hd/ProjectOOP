@@ -1,10 +1,10 @@
-package BigTwo.UserInterface;
+package bigtwo.userinterface;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import BigTwo.Core.*;
-import BigTwo.Member.Player;
+import bigtwo.core.*;
+import bigtwo.member.Player;
 import javafx.fxml.FXML;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
@@ -81,7 +81,6 @@ public class CardGameController {
     		this.playersList.add(p);
     }
     
-
     private void update() {
     	updateHand();
         updateLastCardList();
@@ -98,7 +97,6 @@ public class CardGameController {
     private void resize() {
         setHandCount(player.getHand().size());
         setLastCardListCount(player.getLastCardList().size());
-        System.out.println("he" + lastCardListCount);
         handStates.clear();
 
         for (int i = 0; i < handCount; i++) {
@@ -225,8 +223,6 @@ public class CardGameController {
     	
         cardNums3.setText("0");
         if (count >= 2) {
-        	System.out.println(player.getHand().CardListToString());
-        	System.out.println(player.getDeck().getMember((index + 1) % count).getHand().CardListToString());
         	cardNums3.setText("" + player.getDeck().getMember((index + 1) % count).getHand().size());
         }
         cardNums3.getStylesheets().add(getClass().getResource("style.css").toExternalForm());

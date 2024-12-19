@@ -1,11 +1,8 @@
-package AtDe.Member;
+package atde.member;
 
-import AtDe.Components.CardsUsed;
-import AtDe.Components.Hand;
-import AtDe.Components.NeedToDefend;
-import AtDe.Core.Card;
-import AtDe.Core.CardList;
-import AtDe.GameLogic.Deck;
+import atde.components.*;
+import atde.core.*;
+import atde.gamelogic.Deck;
 
 public class Player implements Member{
     private Hand hand;

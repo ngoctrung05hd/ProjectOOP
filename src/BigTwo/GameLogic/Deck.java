@@ -1,14 +1,13 @@
-package BigTwo.GameLogic;
+package bigtwo.gamelogic;
 
-import BigTwo.Components.*;
-import BigTwo.Core.*;
-//import BigTwo.Member.BotEasy;
-import BigTwo.Member.*;
-import BigTwo.UserInterface.CardGameController;
+import bigtwo.components.*;
+import bigtwo.core.*;
+import bigtwo.member.*;
+import bigtwo.userinterface.CardGameController;
 
 import java.util.ArrayList;
 
-public class Deck implements Base.Deck{
+public class Deck implements base.Deck{
     private CardSet cardSet;
     private LastCardList lastCardList;
     private ArrayList<Member> members;
@@ -51,6 +50,9 @@ public class Deck implements Base.Deck{
    			cardList.getLastCard().compareTo(lastCardList.getLastCard()) > 0) {
     		return true;
     	}
+    	else if (lastCardList.size() == 1 && lastCardList.getCard(0).POINT()[lastCardList.getCard(0).getRank()] == 12 && cardList.canKillTwo()) {
+    		return true;
+    	}
         return false;
     }
 
@@ -77,6 +79,9 @@ public class Deck implements Base.Deck{
 		}
 		else 
 		{
+			if (members.get(currentMemberId) instanceof Player) {
+				controller.setPlayer((Player) members.get(currentMemberId));
+			}
 			members.get(currentMemberId).getMove();
 		}
     }
@@ -90,11 +95,7 @@ public class Deck implements Base.Deck{
     
     private void afterRound() {
     	clearDeck();
-		try {
-            Thread.sleep(2000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
+
 		controller.display();
     }
     
@@ -108,8 +109,12 @@ public class Deck implements Base.Deck{
     	currentMemberId = startMemberId;
         lastCardList.removeAll();
     	
-    	if (controller != null)
+    	if (controller != null) {
+			if (members.get(startMemberId) instanceof Player) {
+				controller.setPlayer((Player) members.get(startMemberId));
+			}
     		controller.display();
+    	}
     	
     	members.get(startMemberId).getMove();
     }

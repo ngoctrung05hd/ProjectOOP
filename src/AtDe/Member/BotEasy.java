@@ -1,12 +1,10 @@
-package AtDe.Member;
+package atde.member;
 
-import AtDe.Components.Hand;
-import AtDe.Components.NeedToDefend;
-import AtDe.Core.Card;
-import AtDe.Core.CardList;
-import AtDe.GameLogic.Deck;
+import atde.components.*;
+import atde.core.*;
+import atde.gamelogic.Deck;
 
-public class BotEasy implements Member, Base.Bot {
+public class BotEasy implements Member, base.Bot {
     private Hand hand;
     private String role;
     private boolean success;
@@ -54,7 +52,6 @@ public class BotEasy implements Member, Base.Bot {
         CardList attackCards = new CardList();
         if (firstMove)
         {
-        	System.out.println("hehehe");
             for (int i = 0; i < hand.size(); ++i)
                 if(hand.getFirstCard().getRank() == hand.getCard(i).getRank()) {
                     attackCards.add(hand.getCard(i));

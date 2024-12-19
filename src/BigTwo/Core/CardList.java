@@ -1,9 +1,9 @@
-package BigTwo.Core;
+package bigtwo.core;
 
 import java.util.ArrayList;
 import java.util.*;
 
-public class CardList extends Base.CardList<Card> {
+public class CardList extends base.CardList<Card> {
     public CardList() {
         super();
     }
@@ -26,7 +26,7 @@ public class CardList extends Base.CardList<Card> {
     	return type;
     }
     
-    public enum CardType {
+    private enum CardType {
 		SINGLE, 
 		PAIR, 
 		TRIPLE, 
@@ -39,6 +39,10 @@ public class CardList extends Base.CardList<Card> {
     
     public boolean isValid() {
     	return getCardType() != CardType.INVALID;
+    }
+    
+    public boolean canKillTwo() {
+    	return (getCardType() == CardType.THREE_PAIRS || getCardType() == CardType.FOUR_PAIRS || getCardType() == CardType.FOUR_OF_A_KIND);
     }
 
 	private CardType determineType() {

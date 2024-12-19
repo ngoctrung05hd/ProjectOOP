@@ -1,11 +1,10 @@
-package AtDe.Member;
+package atde.member;
 
-import AtDe.Components.Hand;
-import AtDe.Core.Card;
-import AtDe.Core.CardList;
-import AtDe.GameLogic.Deck;
+import atde.components.Hand;
+import atde.core.*;
+import atde.gamelogic.Deck;
 
-public interface Member extends Base.Member {
+public interface Member extends base.Member {
     void collect(Card card);
     void collect(CardList cardList);
     Hand getHand();

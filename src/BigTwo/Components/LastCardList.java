@@ -1,6 +1,6 @@
-package BigTwo.Components;
+package bigtwo.components;
 
-import BigTwo.Core.CardList;
+import bigtwo.core.CardList;
 
 public class LastCardList extends CardList {
     public LastCardList() {

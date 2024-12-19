@@ -1,11 +1,10 @@
-package BigTwo.Member;
+package bigtwo.member;
 
-import BigTwo.Components.Hand;
-import BigTwo.Core.Card;
-import BigTwo.Core.CardList;
-import BigTwo.GameLogic.Deck;
+import bigtwo.components.Hand;
+import bigtwo.core.*;
+import bigtwo.gamelogic.Deck;
 
-public interface Member extends Base.Member {
+public interface Member extends base.Member {
     void collect(Card card);
     void collect(CardList cardList);
     Hand getHand();

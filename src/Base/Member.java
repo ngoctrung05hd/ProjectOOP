@@ -1,4 +1,4 @@
-package Base;
+package base;
 
 public interface Member {
 	String getName();

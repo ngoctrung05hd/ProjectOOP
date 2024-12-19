@@ -1,7 +1,6 @@
-package AtDe.Components;
+package atde.components;
 
-import AtDe.Core.Card;
-import AtDe.Core.CardList;
+import atde.core.*;
 
 import java.util.ArrayList;
 import java.util.Collections;

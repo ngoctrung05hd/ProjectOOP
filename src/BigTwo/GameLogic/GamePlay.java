@@ -1,8 +1,8 @@
-package atde.gamelogic;
+package bigtwo.gamelogic;
 
 import java.util.List;
 
-import atde.member.*;
+import bigtwo.member.*;
 
 public class GamePlay {
     private int deckId;

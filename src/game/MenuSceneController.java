@@ -1,12 +1,9 @@
-package Menu;
+package game;
 
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-import AtDe.GameLogic.Deck;
-import AtDe.GameLogic.GamePlay;
-import AtDe.UserInterface.CardGameController;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -38,7 +35,11 @@ public class MenuSceneController {
 	@FXML
 	private TextField nameBox;
 	@FXML
-	private Button startGameButton; // Nút Start Game
+	private Button startGameButton;
+	@FXML
+	private Button quitGameButton;
+	@FXML
+	private Button playGameButton;
 	@FXML
 	private final List<TextField> nameFields = new ArrayList<>();
 	@FXML
@@ -50,7 +51,15 @@ public class MenuSceneController {
 	public void initialize() {
 		// Thêm danh sách giá trị vào ComboBox
 		numPlayersBox.getItems().addAll("2 Players", "3 Players", "4 Players");
-		gameModeBox.getItems().addAll("Atde", "TienLenMienNam");
+		gameModeBox.getItems().addAll("Tan", "TienLenMienNam");
+		
+		setGraphicButton(startGameButton);
+		setGraphicButton(quitGameButton);
+		setGraphicButton(playGameButton);
+		
+		graphicButton.getStylesheets().add(getClass().getResource("style.css").toExternalForm());
+    	graphicButton.getStyleClass().add("play-again-button");
+		
 
 		// Ẩn các thành phần không cần thiết
 		gameModeBox.setVisible(false);
@@ -148,9 +157,12 @@ public class MenuSceneController {
 			}
 		}
 
-		System.out.println("Player Names: " + playerNames);
-		if ("Atde".equals(selectedMode)) {
-		startGame("/AtDe/UserInterface/CardGameLayout.fxml", event);
+		
+		if ("Tan".equals(selectedMode)) {
+			startGame("/atde/userinterface/CardGameLayout.fxml", event);
+		} else if ("TienLenMienNam".equals(selectedMode)) {
+			startGame("/bigtwo/userinterface/CardGameLayout.fxml", event);
+			System.out.println("Player Names: " + playerNames);
 		}
 	}
 
@@ -161,13 +173,8 @@ public class MenuSceneController {
 	
 	
 	public void startGame(String CardGameLink, ActionEvent event) {
-		try {
-			GamePlay gamePlay = new GamePlay();
-	        gamePlay.main(playerNames, totalMember - playerNum);
-			CardGameController controller;
-			Deck deck = gamePlay.deck;
-			
-
+		try {	
+			System.out.println("Player Names: " + playerNames);
 			FXMLLoader loader = new FXMLLoader(getClass().getResource(CardGameLink));
 			Parent root = loader.load();
 
@@ -175,16 +182,29 @@ public class MenuSceneController {
 			root.getStylesheets().add(getClass().getResource("style.css").toExternalForm());
 			root.getStyleClass().add("root");
 			  
-			  
-			  
-			// Lấy Controller và truyền dữ liệu player 
-			controller = loader.getController(); 
-			controller.setPlayerNames(playerNames);
-			deck.setController(controller);
-			controller.addPlayersList(deck.getPlayersList());
-			controller.setPlayer(deck.getPlayer(deck.getStartMemberId()));
-			 
-
+			if ("Tan".equals(gameModeBox.getValue())) {
+				atde.gamelogic.GamePlay gamePlay = new atde.gamelogic.GamePlay();
+		        gamePlay.main(playerNames, totalMember - playerNum);
+				
+				atde.userinterface.CardGameController controller;
+				atde.gamelogic.Deck deck = gamePlay.getDeck();
+				
+				controller = loader.getController();
+				deck.setController(controller);
+				controller.addPlayersList(deck.getPlayersList());
+				controller.setPlayer(deck.getPlayer(deck.getStartMemberId()));
+			} else if ("TienLenMienNam".equals(gameModeBox.getValue())) {
+				bigtwo.gamelogic.GamePlay gamePlay = new bigtwo.gamelogic.GamePlay();
+		        gamePlay.main(playerNames, totalMember - playerNum);
+				
+				bigtwo.userinterface.CardGameController controller;
+				bigtwo.gamelogic.Deck deck = gamePlay.getDeck();
+				
+				controller = loader.getController();
+				deck.setController(controller);
+				controller.addPlayersList(deck.getPlayersList());
+				controller.setPlayer(deck.getPlayer(deck.getStartMemberId()));
+			}
 			// Tạo scene
 			Scene scene = new Scene(root);
 			stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
@@ -196,5 +216,9 @@ public class MenuSceneController {
 			e.printStackTrace();
 		}
 	}
+	private void setGraphicButton(Button button) {
+    	button.getStylesheets().add(getClass().getResource("style.css").toExternalForm());
+    	button.getStyleClass().add("play-again-button");
+    }
 
 }

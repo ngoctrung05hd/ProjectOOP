@@ -1,4 +1,4 @@
-package Base;
+package base;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -12,11 +12,11 @@ public class CardList <T extends Card> {
 
     public void sort() {
         cards.sort((c1, c2) -> {
-            if (c1 instanceof AtDe.Core.Card && c2 instanceof AtDe.Core.Card) {
-                return ((AtDe.Core.Card) c1).compareTo((AtDe.Core.Card) c2);
+            if (c1 instanceof atde.core.Card && c2 instanceof atde.core.Card) {
+                return ((atde.core.Card) c1).compareTo((atde.core.Card) c2);
             }
-            if (c1 instanceof BigTwo.Core.Card && c2 instanceof BigTwo.Core.Card) {
-                return ((BigTwo.Core.Card) c1).compareTo((BigTwo.Core.Card) c2);
+            if (c1 instanceof bigtwo.core.Card && c2 instanceof bigtwo.core.Card) {
+                return ((bigtwo.core.Card) c1).compareTo((bigtwo.core.Card) c2);
             }
             else {
                 return 0;

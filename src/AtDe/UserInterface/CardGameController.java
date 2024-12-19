@@ -1,13 +1,19 @@
-package AtDe.UserInterface;
+package atde.userinterface;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-import AtDe.Core.Card;
-import AtDe.Core.CardList;
-import AtDe.Member.Player;
+import atde.core.*;
+import atde.components.*;
+import atde.gamelogic.*;
+import atde.member.*;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ToggleButton;
@@ -15,6 +21,8 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
+import javafx.stage.Stage;
 
 public class CardGameController {
 	private final ArrayList<Boolean> handStates = new ArrayList<>();       // Trạng thái các lá bài trên tay
@@ -28,6 +36,7 @@ public class CardGameController {
     private int startIndexNeedToDefend = 0;           // Vị trí bắt đầu hiển thị lá bài "Cần đỡ"
     private int startIndexUsed = 0;
     private boolean graphicMode = true;
+    private boolean gamePlaying = true;
     private ArrayList<String> playerName = new ArrayList<>();
 
     private CardList pickedCards = new CardList();
@@ -54,6 +63,10 @@ public class CardGameController {
     private Button prevButton, nextButton, endTurnButton, playButton;
     @FXML
     private Button graphicButton;
+    @FXML 
+    private Button newGameButton;
+    @FXML 
+    private Button quitGameButton;
 
     @FXML
     private Label remainingCardLabel;
@@ -71,6 +84,8 @@ public class CardGameController {
     private Label player3Name;
     @FXML
     private Label playRole;
+    @FXML
+    private VBox endGamePane;
 
     public List<Player> players;
     
@@ -80,6 +95,7 @@ public class CardGameController {
 
     @FXML
     public void initialize() {
+    	
     }
 
     public void display() {
@@ -89,9 +105,6 @@ public class CardGameController {
         playButton.setDisable(true); // Đặt mặc định là không thể đánh bài
         endTurnButton.setOnAction(e -> endTurn());
         playButton.setOnAction(e -> play());
-        updateHand();
-        updateNeedToDefendCards();
-        updateUsedCards();
         updateRemainingCardLabel();
         updateOpponentCard(opponentCard1);
         updateOpponentCard(opponentCard2);
@@ -137,6 +150,17 @@ public class CardGameController {
         }
     }
     private void resize() {
+    	endGamePane.getStylesheets().add(getClass().getResource("style.css").toExternalForm());
+    	endGamePane.getStyleClass().add("vbox");
+    	endGamePane.setVisible(false);
+    	newGameButton.getStylesheets().add(getClass().getResource("style.css").toExternalForm());
+    	newGameButton.getStyleClass().add("play-again-button");
+    	quitGameButton.getStylesheets().add(getClass().getResource("style.css").toExternalForm());
+    	quitGameButton.getStyleClass().add("play-again-button");
+    	playButton.getStylesheets().add(getClass().getResource("style.css").toExternalForm());
+    	playButton.getStyleClass().add("play-again-button");
+    	endTurnButton.getStylesheets().add(getClass().getResource("style.css").toExternalForm());
+    	endTurnButton.getStyleClass().add("play-again-button");
         setHandCount(player.getHand().size());
         setNeedToDefendCardsCount(player.getNeedToDefend().size());
         setUsedCardsCount(player.getCardsUsed().size());
@@ -194,7 +218,6 @@ public class CardGameController {
         if (graphicMode) {
         	handBox.getStyleClass().remove("hand-box-text");
     		handBox.getStyleClass().add("hand-box");
-    		System.out.println("gay");
             } else {
             handBox.getStyleClass().add("hand-box");
             handBox.getStyleClass().add("hand-box-text");
@@ -229,8 +252,6 @@ public class CardGameController {
             cardButton.setOnAction(e -> {
                 handStates.set(index, cardButton.isSelected());
                 playButton.setDisable(!checkMove());
-                System.out.println(player.getNeedToDefend().CardListToString());
-                System.out.println(handStates);
                 if(handStates.get(index)) {
                     cardButton.setTranslateY(-20);
                 } else {
@@ -250,7 +271,6 @@ public class CardGameController {
         if (graphicMode) {
         	needToDefendCardsBox.getStyleClass().remove("hand-box-text");
         	needToDefendCardsBox.getStyleClass().add("hand-box");
-    		System.out.println("gay");
             } else {
             needToDefendCardsBox.getStyleClass().add("hand-box");
             needToDefendCardsBox.getStyleClass().add("hand-box-text");
@@ -283,7 +303,6 @@ public class CardGameController {
             cardButton.setOnAction(e -> {
                 needToDefendCardsStates.set(index, cardButton.isSelected());
                 playButton.setDisable(!checkMove());
-                System.out.println(needToDefendCardsStates);
                 if(needToDefendCardsStates.get(index)) {
                     cardButton.setTranslateY(-20);
                 } else {
@@ -306,7 +325,6 @@ public class CardGameController {
    	 	if (graphicMode) {
    	 		usedCardsBox.getStyleClass().remove("hand-box-text");
    	 		usedCardsBox.getStyleClass().add("hand-box");
-   	 		System.out.println("gay");
    	 		} else {
    	 			usedCardsBox.getStyleClass().add("hand-box");
    	 			usedCardsBox.getStyleClass().add("hand-box-text");
@@ -361,6 +379,7 @@ public class CardGameController {
     private void shiftHandLeft(ActionEvent e) {
         startIndexHand = (startIndexHand - 1 + handCount) % handCount;
         updateHand();
+        // endGamePane();
     }
     @FXML
     private void shiftHandRight(ActionEvent e) {
@@ -403,11 +422,13 @@ public class CardGameController {
         startIndexUsed = (startIndexUsed + 1) % usedCardsCount;
         updateUsedCards();
     }
+    //!!!!!!
     @FXML
     private void switchGraphicMode() {
     	graphicMode = !graphicMode;
     	update();
     }
+    //!!!!!
 
     private void updateRemainingCardLabel() {
     	remainingCardLabel.setText("");
@@ -470,5 +491,33 @@ public class CardGameController {
     	playRole.setText("this turn you are the " + player.getRole() + "er");
     	playRole.getStylesheets().add(getClass().getResource("style.css").toExternalForm());
     	playRole.getStyleClass().add("text-bordered");
+    }
+    
+    
+    public void endGamePane() {
+    	endGamePane.setVisible(true);
+    	gamePlaying = false;
+    }
+    @FXML
+    private void newGame(ActionEvent e) {
+    	Deck deck = player.getDeck();
+    	deck.newGame();
+    	endGamePane.setVisible(false);
+    }
+    @FXML
+    private void quitGame(ActionEvent e) {
+    	try {
+    	FXMLLoader loader = new FXMLLoader(getClass().getResource("/Menu/Menu.fxml"));
+		Parent root = loader.load();
+		Scene scene = new Scene(root);
+		Stage stage = (Stage) ((Node) e.getSource()).getScene().getWindow();
+		stage.setScene(scene);
+		stage.setTitle("Card Game GUI");
+		stage.show();
+	} catch (IOException e1) {
+		// TODO Auto-generated catch block
+		e1.printStackTrace();
+	}
+    	
     }
 }

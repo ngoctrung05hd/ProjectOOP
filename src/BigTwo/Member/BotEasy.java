@@ -1,12 +1,11 @@
-package BigTwo.Member;
+package bigtwo.member;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import BigTwo.Components.Hand;
-import BigTwo.Core.Card;
-import BigTwo.Core.CardList;
-import BigTwo.GameLogic.Deck;
+import bigtwo.components.Hand;
+import bigtwo.core.*;
+import bigtwo.gamelogic.Deck;
 
 public class BotEasy implements Member{
     private Hand hand;

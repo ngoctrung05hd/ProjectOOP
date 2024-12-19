@@ -1,18 +1,13 @@
-package AtDe.GameLogic;
+package atde.gamelogic;
 
-import AtDe.Components.CardSet;
-import AtDe.Components.CardsUsed;
-import AtDe.Components.NeedToDefend;
-import AtDe.Core.Card;
-import AtDe.Core.CardList;
-import AtDe.Member.BotEasy;
-import AtDe.Member.Member;
-import AtDe.Member.Player;
-import AtDe.UserInterface.CardGameController;
+import atde.components.*;
+import atde.core.*;
+import atde.member.*;
+import atde.userinterface.CardGameController;
 
 import java.util.ArrayList;
 
-public class Deck implements Base.Deck{
+public class Deck implements base.Deck{
     private CardSet cardSet;
     private CardsUsed cardsUsed;
     private NeedToDefend needToDefend;
@@ -53,7 +48,6 @@ public class Deck implements Base.Deck{
     }
 
     public boolean checkAttack(CardList attackCards) {
-    	System.out.println(cardsUsed.CardListToString());
         for (int i = 0; i < attackCards.size(); ++i) {
             if (!checkAttack(attackCards.getCard(i)))
                 return false;
@@ -173,8 +167,6 @@ public class Deck implements Base.Deck{
     	for (int i = 0; i < members.size(); ++i) {
     			int id = (startMemberId + i) % members.size();
     			int count = Math.min(cardSet.size(), Math.max(0, 8 - members.get(id).getHand().size()));
-    			System.out.print("check ");
-    			System.out.println("" + cardSet.size() + " " + members.get(id).getHand().size() + " " + members.get(id).getHand().CardListToString());
     			members.get(id).getHand().add(getCards(count));
    		}
 		controller.display();
